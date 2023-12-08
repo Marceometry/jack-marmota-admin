@@ -1,0 +1,26 @@
+{
+  "extends": "next/core-web-vitals",
+  "plugins": ["import"],
+  "rules": {
+    "sort-imports": [
+      "warn",
+      { "ignoreCase": true, "ignoreDeclarationSort": true }
+    ],
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroupsExcludedImportTypes": ["internal"],
+        "pathGroups": [{ "group": "internal", "pattern": "@/**" }],
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
+    ]
+  }
+}
