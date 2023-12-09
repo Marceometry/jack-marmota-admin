@@ -5,3 +5,11 @@
 html {
   color-scheme: dark;
 }
+
+body {
+  @apply bg-zinc-950 text-zinc-200 accent-yellow-500 selection:bg-yellow-700;
+}
+
+a {
+  @apply transition-colors hover:text-yellow-500;
+}

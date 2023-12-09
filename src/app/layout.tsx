@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="bg-zinc-950 text-zinc-100">{children}</body>
+      <body>{children}</body>
     </html>
   )
 }

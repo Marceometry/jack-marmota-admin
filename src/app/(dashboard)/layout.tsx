@@ -1,4 +1,4 @@
-import { Header, Sidebar } from '@/components'
+import { Header, PageTitle, Sidebar } from '@/components'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +8,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex">
         <Sidebar />
 
-        <main className="flex-1 p-6 pb-0">{children}</main>
+        <main className="flex-1 py-4 px-8 pb-0">
+          <PageTitle />
+
+          {children}
+        </main>
       </div>
     </div>
   )
