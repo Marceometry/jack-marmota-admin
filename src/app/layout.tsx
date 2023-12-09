@@ -5,14 +5,10 @@ export const metadata: Metadata = {
   title: 'Jack Marmota Admin',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className="bg-zinc-950 text-zinc-100">{children}</body>
     </html>
   )
 }
