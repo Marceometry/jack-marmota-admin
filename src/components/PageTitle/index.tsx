@@ -12,7 +12,7 @@ export function PageTitle() {
 
   return (
     <div>
-      <h2 className="text-2xl">{label}</h2>
+      <h2 className="text-2xl font-medium">{label}</h2>
     </div>
   )
 }

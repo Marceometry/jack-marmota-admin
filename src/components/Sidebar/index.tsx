@@ -2,34 +2,65 @@
 
 import { MenuIcon, XIcon } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { twJoin } from 'tailwind-merge'
 import { useDisclose } from '@/hooks'
-import { DASHBOARD_ROUTE_LABELS, DASHBOARD_ROUTES } from '@/routes'
+import {
+  DASHBOARD_ROUTE_ICONS,
+  DASHBOARD_ROUTE_LABELS,
+  DASHBOARD_ROUTES,
+} from '@/routes'
 
 export function Sidebar() {
-  const { isOpen, onToggle } = useDisclose()
+  const { isOpen, onToggle } = useDisclose({ defaultValue: true })
+  const pathname = usePathname()
 
   return (
-    <aside className="p-4 border-r border-zinc-800 bg-zinc-900">
-      <div className="mb-4">
-        <button
-          onClick={onToggle}
-          className="hover:brightness-75 transition-all"
-        >
-          {isOpen ? <XIcon /> : <MenuIcon />}
-        </button>
-      </div>
-
-      {isOpen && (
-        <nav className="pl-1 pr-4">
-          <ul className="flex flex-col gap-2">
-            {Object.values(DASHBOARD_ROUTES).map((route) => (
-              <li key={route}>
-                <Link href={route}>{DASHBOARD_ROUTE_LABELS[route]}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <aside
+      className={twJoin(
+        'border-r border-zinc-800 bg-zinc-900 transition-all',
+        isOpen ? 'w-48' : 'w-14',
       )}
+    >
+      <button
+        onClick={onToggle}
+        className="m-4 hover:brightness-75 transition-all"
+      >
+        {isOpen ? <XIcon /> : <MenuIcon />}
+      </button>
+
+      <nav>
+        <ul>
+          {Object.values(DASHBOARD_ROUTES).map((route) => {
+            const Icon = DASHBOARD_ROUTE_ICONS[route]
+            const label = DASHBOARD_ROUTE_LABELS[route]
+            const isActive = route === pathname
+
+            return (
+              <li key={route}>
+                <Link
+                  href={route}
+                  title={!isOpen ? label : ''}
+                  className={twJoin(
+                    'py-2 px-3 border-x-4 border-transparent flex items-center gap-2 hover:bg-zinc-700',
+                    isActive ? 'text-yellow-500 border-l-yellow-500' : '',
+                  )}
+                >
+                  <Icon className="shrink-0" />
+                  <span
+                    className={twJoin(
+                      'transition-opacity',
+                      isOpen ? 'delay-100' : 'opacity-0 sr-only',
+                    )}
+                  >
+                    {label}
+                  </span>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
     </aside>
   )
 }

@@ -1,3 +1,4 @@
+import { AudioLines, Cog, LayoutDashboard } from 'lucide-react'
 import { Route } from 'next'
 
 type RouteList<T extends string> = {
@@ -16,6 +17,12 @@ export const DASHBOARD_ROUTE_LABELS = {
   [DASHBOARD_ROUTES.HOME]: 'Dashboard',
   [DASHBOARD_ROUTES.SONGS]: 'Músicas',
   [DASHBOARD_ROUTES.EQUIPMENTS]: 'Equipamentos',
+}
+
+export const DASHBOARD_ROUTE_ICONS = {
+  [DASHBOARD_ROUTES.HOME]: LayoutDashboard,
+  [DASHBOARD_ROUTES.SONGS]: AudioLines,
+  [DASHBOARD_ROUTES.EQUIPMENTS]: Cog,
 }
 
 type Routes = DashboardRoutes | 'LOGIN'
