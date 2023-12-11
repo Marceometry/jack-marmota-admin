@@ -1,10 +1,10 @@
 'use client'
 
 import { ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 import { SearchInput } from '@/components/atoms'
-import { dynamicSort } from '@/utils'
+import { dynamicSort, filterByText } from '@/utils'
 
 type Item = {
   id: string | number
@@ -21,17 +21,24 @@ type Props<T extends Item> = {
   data: T[]
   columns: TableColumn<T>[]
   defaultSortParam: keyof T
+  hideResultCount?: boolean
 }
 
 export function Table<T extends Item>({
   data,
   columns,
   defaultSortParam,
+  hideResultCount,
 }: Props<T>) {
+  const [searchText, setSearchText] = useState('')
   const [sortParam, setSortParam] = useState<keyof T>(defaultSortParam)
   const [reverseSort, setReverseSort] = useState(false)
 
-  const orderedData = data.sort((a, b) =>
+  const filteredData = useMemo(
+    () => filterByText(data, columns, searchText),
+    [searchText, data],
+  )
+  const orderedData = filteredData.sort((a, b) =>
     dynamicSort(a[sortParam], b[sortParam], reverseSort),
   )
 
@@ -42,8 +49,8 @@ export function Table<T extends Item>({
 
   return (
     <div>
-      <div className="mb-2 w-full flex justify-end">
-        <SearchInput clearable />
+      <div className="mb-2 gap-4 w-full flex justify-end">
+        <SearchInput clearable onChange={setSearchText} />
       </div>
 
       <div>
@@ -112,7 +119,7 @@ export function Table<T extends Item>({
         </table>
       </div>
 
-      {!!orderedData.length && (
+      {!hideResultCount && !!orderedData.length && (
         <span className="pt-2 text-sm text-center block">
           {orderedData.length} resultado{orderedData.length > 1 && 's'}
         </span>

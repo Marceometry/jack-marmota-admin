@@ -15,7 +15,12 @@ const columns: TableColumn<Item>[] = [
 export default function Page() {
   return (
     <div>
-      <Table data={data} columns={columns} defaultSortParam="name" />
+      <Table
+        data={data}
+        columns={columns}
+        defaultSortParam="name"
+        hideResultCount
+      />
     </div>
   )
 }

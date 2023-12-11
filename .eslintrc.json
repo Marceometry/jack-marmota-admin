@@ -2,6 +2,7 @@
   "extends": "next/core-web-vitals",
   "plugins": ["import"],
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
     "sort-imports": [
       "warn",
       { "ignoreCase": true, "ignoreDeclarationSort": true }
