@@ -6,7 +6,7 @@ import { twJoin } from 'tailwind-merge'
 
 type Props = {
   open?: boolean
-  setOpen?: (value: boolean) => void
+  onOpenChange?: (value: boolean) => void
   title?: string
   description?: string
   width?: number
@@ -16,7 +16,7 @@ type Props = {
 
 export function Drawer({
   open,
-  setOpen,
+  onOpenChange,
   title,
   description,
   width,
@@ -24,7 +24,7 @@ export function Drawer({
   trigger,
 }: Props) {
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
 
       <Dialog.Portal>
@@ -47,12 +47,12 @@ export function Drawer({
           </Dialog.Close>
 
           {title && (
-            <Dialog.Title className="text-xl mb-4 font-semibold">
+            <Dialog.Title className="text-xl mb-6 font-semibold">
               {title}
             </Dialog.Title>
           )}
           {description && (
-            <Dialog.Description className="-mt-2 mb-4">
+            <Dialog.Description className="-mt-4 mb-6">
               {description}
             </Dialog.Description>
           )}

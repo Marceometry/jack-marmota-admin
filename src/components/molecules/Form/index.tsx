@@ -1,10 +1,10 @@
-import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { FieldValues, FormProvider, UseFormReturn } from 'react-hook-form'
 
 type Props<T extends FieldValues> = {
-  children: React.ReactNode;
-  formMethods: UseFormReturn<T, object>;
-  onSubmit: (data: T) => void;
-};
+  children: React.ReactNode
+  formMethods: UseFormReturn<T, object>
+  onSubmit: (data: T) => void
+}
 
 export function Form<T extends FieldValues>({
   children,
@@ -15,5 +15,5 @@ export function Form<T extends FieldValues>({
     <FormProvider {...formMethods}>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>{children}</form>
     </FormProvider>
-  );
+  )
 }

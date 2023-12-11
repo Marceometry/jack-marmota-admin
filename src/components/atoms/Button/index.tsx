@@ -7,22 +7,31 @@ type Props = React.DetailedHTMLProps<
 > & {
   children: React.ReactNode
   variant?: 'fill' | 'outline'
+  fullWidth?: boolean
 }
 
 export const Button = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { children, className, type = 'button', variant = 'fill' } = props
+    const {
+      children,
+      className,
+      fullWidth,
+      type = 'button',
+      variant = 'fill',
+      ...rest
+    } = props
 
     return (
       <button
-        {...props}
+        {...rest}
         ref={ref}
         type={type}
         className={twMerge(
-          'py-2 px-6 rounded-md text-sm transition-all hover:bg-zinc-700',
+          'py-2 px-6 rounded-md transition-all hover:bg-zinc-700',
           variant === 'fill'
             ? 'border border-zinc-800 bg-zinc-800'
             : 'border border-zinc-700',
+          fullWidth ? 'w-full' : '',
           className,
         )}
       >

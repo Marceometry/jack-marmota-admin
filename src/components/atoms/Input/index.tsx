@@ -1,6 +1,7 @@
 'use client'
 
 import { FieldValues, Path, useFormContext } from 'react-hook-form'
+import { twJoin } from 'tailwind-merge'
 
 export type InputProps<T extends FieldValues> =
   React.InputHTMLAttributes<HTMLInputElement> & {
@@ -31,7 +32,7 @@ export function Input<T extends FieldValues>({
   return (
     <div className="relative">
       {label && (
-        <label htmlFor={name}>
+        <label htmlFor={name} className="block text-sm mb-1">
           {label}
           {required ? '*' : ''}
         </label>
@@ -44,10 +45,14 @@ export function Input<T extends FieldValues>({
         required={required}
         disabled={disabled}
         placeholder={placeholder || label}
+        className={twJoin(
+          'w-full flex-1 text-sm rounded-md py-2 px-3',
+          'border border-zinc-700 hover:border-zinc-600 placeholder:text-zinc-500 bg-transparent transition-all',
+        )}
       />
 
       {typeof error === 'string' && (
-        <span className="mt-1 absolute text-red-400">{error}</span>
+        <span className="block mt-1 text-xs text-red-400">{error}</span>
       )}
     </div>
   )
