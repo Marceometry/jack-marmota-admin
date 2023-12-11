@@ -1,6 +1,3 @@
 export * from './Header'
-export * from './Input'
-export * from './SearchInput'
 export * from './PageTitle'
-export * from './Table'
 export * from './Sidebar'

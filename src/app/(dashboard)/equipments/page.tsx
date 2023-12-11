@@ -1,4 +1,4 @@
-import { Table, TableColumn } from '@/components'
+import { Table, TableColumn } from '@/components/molecules'
 
 const data = [
   { id: '1', name: 'Cabo XLR/P10', quantity: 2 },

@@ -1,4 +1,4 @@
-import { Header, PageTitle, Sidebar } from '@/components'
+import { Header, PageTitle, Sidebar } from '@/components/organisms'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

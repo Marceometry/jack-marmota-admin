@@ -18,7 +18,7 @@ export function Input<T extends FieldValues>({
   disabled,
   placeholder,
   onValueChange,
-  ...rest
+  ...props
 }: InputProps<T>) {
   const {
     register,
@@ -39,7 +39,7 @@ export function Input<T extends FieldValues>({
 
       <input
         {...inputRegister}
-        {...rest}
+        {...props}
         id={name}
         required={required}
         disabled={disabled}

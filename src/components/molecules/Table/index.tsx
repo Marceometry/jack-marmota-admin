@@ -3,7 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { twJoin } from 'tailwind-merge'
-import { SearchInput } from '@/components'
+import { SearchInput } from '@/components/atoms'
 import { dynamicSort } from '@/utils'
 
 type Item = {
