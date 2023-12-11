@@ -3,8 +3,9 @@
 import { ChevronDown } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
-import { SearchInput } from '@/components/atoms'
+import { Button, SearchInput } from '@/components/atoms'
 import { dynamicSort, filterByText } from '@/utils'
+import { Drawer } from '..'
 
 type Item = {
   id: string | number
@@ -22,6 +23,7 @@ type Props<T extends Item> = {
   columns: TableColumn<T>[]
   defaultSortParam: keyof T
   hideResultCount?: boolean
+  tableHeader?: React.ReactNode
 }
 
 export function Table<T extends Item>({
@@ -29,6 +31,7 @@ export function Table<T extends Item>({
   columns,
   defaultSortParam,
   hideResultCount,
+  tableHeader,
 }: Props<T>) {
   const [searchText, setSearchText] = useState('')
   const [sortParam, setSortParam] = useState<keyof T>(defaultSortParam)
@@ -51,6 +54,8 @@ export function Table<T extends Item>({
     <div>
       <div className="mb-2 gap-4 w-full flex justify-end">
         <SearchInput clearable onChange={setSearchText} />
+
+        {tableHeader}
       </div>
 
       <div>

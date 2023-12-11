@@ -1,4 +1,5 @@
-import { Table, TableColumn } from '@/components/molecules'
+import { Button } from '@/components/atoms'
+import { Drawer, Table, TableColumn } from '@/components/molecules'
 
 const data = [
   { id: '1', name: 'Cabo XLR/P10', quantity: 2 },
@@ -18,6 +19,15 @@ export default function Page() {
       <Table
         data={data}
         columns={columns}
+        tableHeader={
+          <Drawer
+            width={440}
+            trigger={<Button>Adicionar equipamento</Button>}
+            title="Adicionar novo equipamento"
+          >
+            <span></span>
+          </Drawer>
+        }
         defaultSortParam="name"
         hideResultCount
       />
