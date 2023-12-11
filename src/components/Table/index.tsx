@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { twJoin } from 'tailwind-merge'
+import { SearchInput } from '@/components'
 import { dynamicSort } from '@/utils'
 
 type Item = {
@@ -41,6 +42,10 @@ export function Table<T extends Item>({
 
   return (
     <div>
+      <div className="mb-2 w-full flex justify-end">
+        <SearchInput clearable />
+      </div>
+
       <div>
         <table className="w-full rounded-md overflow-hidden border-collapse bg-zinc-900">
           <thead>
@@ -81,27 +86,37 @@ export function Table<T extends Item>({
           </thead>
 
           <tbody>
-            {orderedData.map((item) => {
-              return (
-                <tr key={item.id}>
-                  {columns.map((column) => (
-                    <td
-                      key={column.label}
-                      className="py-2 px-4 text-left border-b border-b-zinc-800"
-                    >
-                      {column.key ? item[column.key] : column.render?.(item)}
-                    </td>
-                  ))}
-                </tr>
-              )
-            })}
+            {!orderedData.length ? (
+              <tr>
+                <td colSpan={columns.length} className="p-4 text-center">
+                  Não há resultados
+                </td>
+              </tr>
+            ) : (
+              orderedData.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    {columns.map((column) => (
+                      <td
+                        key={column.label}
+                        className="py-2 px-4 text-left border-b border-b-zinc-800"
+                      >
+                        {column.key ? item[column.key] : column.render?.(item)}
+                      </td>
+                    ))}
+                  </tr>
+                )
+              })
+            )}
           </tbody>
         </table>
       </div>
 
-      <span className="pt-2 text-sm text-center block">
-        {orderedData.length} resultados
-      </span>
+      {!!orderedData.length && (
+        <span className="pt-2 text-sm text-center block">
+          {orderedData.length} resultado{orderedData.length > 1 && 's'}
+        </span>
+      )}
     </div>
   )
 }

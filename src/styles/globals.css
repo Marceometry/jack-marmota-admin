@@ -7,5 +7,9 @@ html {
 }
 
 body {
-  @apply bg-zinc-950 text-zinc-200 accent-yellow-500 selection:bg-yellow-700;
+  @apply bg-zinc-950 text-zinc-200 accent-yellow-500 selection:bg-yellow-800;
+}
+
+* {
+  @apply outline-none focus-visible:ring-1 focus-visible:ring-yellow-500;
 }

@@ -18,13 +18,13 @@ export function Sidebar() {
   return (
     <aside
       className={twJoin(
-        'border-r border-zinc-800 bg-zinc-900 transition-all',
+        'border-r border-zinc-800 bg-zinc-900 transition-all duration-500 overflow-hidden',
         isOpen ? 'w-48' : 'w-14',
       )}
     >
       <button
         onClick={onToggle}
-        className="m-4 hover:brightness-75 transition-all"
+        className="m-4 rounded hover:brightness-75 transition-all"
       >
         {isOpen ? <XIcon /> : <MenuIcon />}
       </button>
@@ -40,17 +40,19 @@ export function Sidebar() {
               <li key={route}>
                 <Link
                   href={route}
-                  title={!isOpen ? label : ''}
+                  title={label}
                   className={twJoin(
-                    'py-2 px-3 border-x-4 border-transparent flex items-center gap-2 hover:bg-zinc-700',
+                    'py-2 px-3 border-x-4 border-transparent flex items-center gap-2 transition-all hover:bg-zinc-700',
                     isActive ? 'text-yellow-500 border-l-yellow-500' : '',
                   )}
                 >
                   <Icon className="shrink-0" />
                   <span
                     className={twJoin(
-                      'transition-opacity',
-                      isOpen ? 'delay-100' : 'opacity-0 sr-only',
+                      'transition-opacity whitespace-nowrap',
+                      isOpen
+                        ? 'duration-500'
+                        : 'duration-200 opacity-0 invisible',
                     )}
                   >
                     {label}
