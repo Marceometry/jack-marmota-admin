@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "date-fns": "^2.30.0",
+    "firebase": "^10.7.1",
     "lucide-react": "^0.294.0",
     "next": "14.0.4",
     "react": "^18",
