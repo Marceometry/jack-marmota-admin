@@ -58,24 +58,17 @@ export function Table<T extends Item>({
       </div>
 
       <div className="max-h-[65vh] overflow-y-auto">
-        <table className="w-full rounded-md overflow-hidden border-collapse bg-zinc-900">
+        <table className="w-full overflow-hidden border-collapse bg-zinc-900">
           <thead>
             <tr>
-              {columns.map(({ key, label }, index) => {
+              {columns.map(({ key, label }) => {
                 const isActive = sortParam === key
                 return (
                   <th key={label} className="text-left bg-zinc-800">
                     {key ? (
                       <button
                         onClick={() => handleClickSort(key, isActive)}
-                        className={twJoin(
-                          'w-full py-2 pl-4 pr-7 flex items-center gap-1 hover:bg-zinc-700 transition-colors',
-                          index === 0
-                            ? 'rounded-tl-md'
-                            : index === columns.length - 1
-                            ? 'rounded-tr-md'
-                            : '',
-                        )}
+                        className="w-full py-2 pl-4 pr-7 flex items-center gap-1 hover:bg-zinc-700 transition-colors"
                       >
                         {label}
                         <ChevronDown
