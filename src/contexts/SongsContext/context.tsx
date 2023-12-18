@@ -7,6 +7,7 @@ import { useFirebaseDatabase } from '@/lib/firebase'
 import {
   CreateSongModel,
   Song,
+  SongFilters,
   SongsContextData,
   SongsContextProviderProps,
 } from './types'
@@ -15,15 +16,18 @@ export const SongsContext = createContext({} as SongsContextData)
 
 export function SongsContextProvider({ children }: SongsContextProviderProps) {
   const { call, isLoading, setIsLoading } = useApiCall(true)
-  const [songs, setSongs] = useState<Song[]>([])
   const { onChange, add } = useFirebaseDatabase<Song>('songs')
+  const [songFilters, setSongFilters] = useState<SongFilters>({})
+  const [songs, setSongs] = useState<Song[]>([])
 
   const addSong = call(
-    (data: CreateSongModel) => {
-      add({ id: uuid(), ...data })
-    },
-    { toastText: 'Música adicionada!' },
+    (data: CreateSongModel) => add({ id: uuid(), ...data }),
+    { toastText: 'Adicionada com sucesso!' },
   )
+
+  const updateSong = call((data: Song) => add(data), {
+    toastText: 'Atualizada com sucesso!',
+  })
 
   useEffect(() => {
     const unsubscribe = onChange((data) => {
@@ -36,7 +40,9 @@ export function SongsContextProvider({ children }: SongsContextProviderProps) {
   }, [])
 
   return (
-    <SongsContext.Provider value={{ isLoading, songs, addSong }}>
+    <SongsContext.Provider
+      value={{ isLoading, songs, addSong, songFilters, setSongFilters }}
+    >
       {children}
     </SongsContext.Provider>
   )

@@ -7,7 +7,6 @@ type Props<T> = {
 
 export function Checkbox<T extends FieldValues>({ name, label }: Props<T>) {
   const { register } = useFormContext<T>()
-
   const inputRegister = register(name)
 
   return (

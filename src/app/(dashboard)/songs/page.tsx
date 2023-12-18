@@ -1,8 +1,8 @@
 'use client'
 
 import { Table, TableColumn } from '@/components/molecules'
-import { SongForm } from '@/components/organisms'
-import { Song, useSongs } from '@/contexts'
+import { SongFilterForm, SongForm } from '@/components/organisms'
+import { Song, songFilter, useSongs } from '@/contexts'
 
 const columns: TableColumn<Song>[] = [
   { label: 'Nome', key: 'name' },
@@ -12,13 +12,25 @@ const columns: TableColumn<Song>[] = [
 ]
 
 export default function Page() {
-  const { songs } = useSongs()
+  const { songs, songFilters } = useSongs()
+
+  const hasFilters = !!Object.keys(songFilters).length
+  const filteredSongs = hasFilters
+    ? songs.filter((song) => songFilter(song, songFilters))
+    : songs
+
+  const header = (
+    <div className="flex items-center gap-2">
+      <SongFilterForm />
+      <SongForm />
+    </div>
+  )
 
   return (
     <Table
-      data={songs}
+      data={filteredSongs}
       columns={columns}
-      tableHeader={<SongForm />}
+      tableHeader={header}
       defaultSortParam="name"
     />
   )

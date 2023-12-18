@@ -3,9 +3,8 @@
 import { ChevronDown } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
-import { Button, SearchInput } from '@/components/atoms'
+import { SearchInput } from '@/components/atoms'
 import { dynamicSort, filterByText } from '@/utils'
-import { Drawer } from '..'
 
 type Item = {
   id: string | number
