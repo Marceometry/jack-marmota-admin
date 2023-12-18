@@ -11,11 +11,12 @@ type Props = {
   title?: string
   description?: string
   width?: number
+  behaviour?: 'drawer' | 'dialog'
   trigger: React.ReactNode
   children: React.ReactNode
 }
 
-export function Drawer({
+export function Modal({
   open,
   onOpenChange,
   title,
@@ -23,6 +24,7 @@ export function Drawer({
   width,
   children,
   trigger,
+  behaviour = 'drawer',
 }: Props) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -34,8 +36,11 @@ export function Drawer({
         <Dialog.Content
           style={{ width }}
           className={twJoin(
-            'h-full w-96 max-w-[100vw] p-8 py-16 flex flex-col border-l border-l-zinc-800 bg-zinc-900',
-            'fixed top-0 right-0 z-50 focus:outline-none data-[state=open]:animate-drawerShow data-[state=closed]:animate-drawerHide shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]',
+            'w-96 max-w-[100vw] p-8 py-16 flex flex-col border-l border-l-zinc-800 bg-zinc-900',
+            'fixed top-0 right-0 z-50 focus:outline-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]',
+            behaviour === 'drawer'
+              ? 'h-full data-[state=open]:animate-drawerShow data-[state=closed]:animate-drawerHide'
+              : 'data-[state=open]:animate-dialogShow data-[state=closed]:animate-dialogHide',
           )}
         >
           <Dialog.Close asChild>

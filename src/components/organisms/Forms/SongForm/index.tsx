@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, RadioGroup } from '@/components/atoms'
-import { Drawer, Form } from '@/components/molecules'
+import { Modal, Form } from '@/components/molecules'
 import { Song, useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
 import {
@@ -45,7 +45,7 @@ export function SongForm({ song, trigger }: Props) {
   }
 
   return (
-    <Drawer
+    <Modal
       open={isOpen}
       onOpenChange={onToggle}
       width={440}
@@ -75,6 +75,6 @@ export function SongForm({ song, trigger }: Props) {
           </div>
         </div>
       </Form>
-    </Drawer>
+    </Modal>
   )
 }

@@ -3,7 +3,7 @@
 import { Filter } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { Button, IconButton, RadioGroup } from '@/components/atoms'
-import { Drawer, Form } from '@/components/molecules'
+import { Modal, Form } from '@/components/molecules'
 import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
 import {
@@ -34,7 +34,7 @@ export function SongFilterForm() {
   }
 
   return (
-    <Drawer
+    <Modal
       open={isOpen}
       onOpenChange={onToggle}
       width={440}
@@ -62,6 +62,6 @@ export function SongFilterForm() {
           </div>
         </div>
       </Form>
-    </Drawer>
+    </Modal>
   )
 }

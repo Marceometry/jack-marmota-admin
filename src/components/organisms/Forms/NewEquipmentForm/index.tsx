@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { Button, Input } from '@/components/atoms'
-import { Drawer, Form } from '@/components/molecules'
+import { Modal, Form } from '@/components/molecules'
 import { useDisclose } from '@/hooks'
 import { NewEquipmentFormInputs, newEquipmentFormResolver } from './validation'
 
@@ -20,7 +20,7 @@ export function NewEquipmentForm() {
   function handleSubmit(data: NewEquipmentFormInputs) {}
 
   return (
-    <Drawer
+    <Modal
       open={isOpen}
       onOpenChange={onToggle}
       width={440}
@@ -50,6 +50,6 @@ export function NewEquipmentForm() {
           </div>
         </div>
       </Form>
-    </Drawer>
+    </Modal>
   )
 }
