@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { twJoin } from 'tailwind-merge'
+import { IconButton } from '@/components/atoms'
 import { useDisclose } from '@/hooks'
 import {
   DASHBOARD_ROUTE_ICONS,
@@ -22,12 +23,12 @@ export function Sidebar() {
         isOpen ? 'w-48' : 'w-14',
       )}
     >
-      <button
+      <IconButton
         onClick={onToggle}
-        className="m-4 rounded hover:brightness-75 transition-all"
-      >
-        {isOpen ? <XIcon /> : <MenuIcon />}
-      </button>
+        icon={isOpen ? <XIcon /> : <MenuIcon />}
+        aria-label={isOpen ? 'Fechar barra lateral' : 'Abrir barra lateral'}
+        className="m-4"
+      />
 
       <nav>
         <ul>

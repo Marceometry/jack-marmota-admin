@@ -1,8 +1,9 @@
 'use client'
 
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'lucide-react'
+import { XIcon } from 'lucide-react'
 import { twJoin } from 'tailwind-merge'
+import { IconButton } from '@/components/atoms'
 
 type Props = {
   open?: boolean
@@ -38,12 +39,11 @@ export function Drawer({
           )}
         >
           <Dialog.Close asChild>
-            <button
-              className="absolute top-8 right-8 rounded hover:brightness-75 transition-all"
-              aria-label="Fechar"
-            >
-              <X />
-            </button>
+            <IconButton
+              className="absolute top-8 right-8"
+              aria-label="Fechar modal"
+              icon={<XIcon />}
+            />
           </Dialog.Close>
 
           {title && (

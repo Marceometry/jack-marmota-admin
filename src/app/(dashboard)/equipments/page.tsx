@@ -16,14 +16,12 @@ const columns: TableColumn<Item>[] = [
 
 export default function Page() {
   return (
-    <div>
-      <Table
-        data={data}
-        columns={columns}
-        tableHeader={<NewEquipmentForm />}
-        defaultSortParam="name"
-        hideResultCount
-      />
-    </div>
+    <Table
+      data={data}
+      columns={columns}
+      tableHeader={<NewEquipmentForm />}
+      defaultSortParam="name"
+      hideResultCount
+    />
   )
 }

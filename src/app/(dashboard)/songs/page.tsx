@@ -15,13 +15,11 @@ export default function Page() {
   const { songs } = useSongs()
 
   return (
-    <div>
-      <Table
-        data={songs}
-        columns={columns}
-        tableHeader={<SongForm />}
-        defaultSortParam="name"
-      />
-    </div>
+    <Table
+      data={songs}
+      columns={columns}
+      tableHeader={<SongForm />}
+      defaultSortParam="name"
+    />
   )
 }
