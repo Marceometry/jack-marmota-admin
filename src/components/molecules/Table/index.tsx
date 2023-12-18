@@ -58,7 +58,7 @@ export function Table<T extends Item>({
         {tableHeader}
       </div>
 
-      <div>
+      <div className="max-h-[65vh] overflow-y-auto">
         <table className="w-full rounded-md overflow-hidden border-collapse bg-zinc-900">
           <thead>
             <tr>
@@ -113,7 +113,9 @@ export function Table<T extends Item>({
                         key={column.label}
                         className="py-2 px-4 text-left border-b border-b-zinc-800"
                       >
-                        {column.key ? item[column.key] : column.render?.(item)}
+                        {(column.key
+                          ? item[column.key]
+                          : column.render?.(item)) || '-'}
                       </td>
                     ))}
                   </tr>
