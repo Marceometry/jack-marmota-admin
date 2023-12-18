@@ -8,7 +8,7 @@ export enum SongRegionLabel {
 export type SongRegion = keyof typeof SongRegionLabel
 
 export enum SongStatusLabel {
-  'READY' = 'Pronto',
+  'READY' = 'Pronto pra tocar',
   'IN_REHEARSAL' = 'Em ensaio',
 }
 export type SongStatus = keyof typeof SongStatusLabel
@@ -34,8 +34,9 @@ export type SongsContextData = {
   isLoading: boolean
   songs: Song[]
   addSong: (data: CreateSongModel) => void
-  songFilters: SongFilters
-  setSongFilters: (data: SongFilters) => void
+  updateSong: (data: Song) => void
+  filters: SongFilters
+  setFilters: (data: SongFilters) => void
 }
 
 export type SongsContextProviderProps = {

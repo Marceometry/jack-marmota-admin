@@ -17,7 +17,7 @@ export const SongsContext = createContext({} as SongsContextData)
 export function SongsContextProvider({ children }: SongsContextProviderProps) {
   const { call, isLoading, setIsLoading } = useApiCall(true)
   const { onChange, add } = useFirebaseDatabase<Song>('songs')
-  const [songFilters, setSongFilters] = useState<SongFilters>({})
+  const [filters, setFilters] = useState<SongFilters>({})
   const [songs, setSongs] = useState<Song[]>([])
 
   const addSong = call(
@@ -41,7 +41,14 @@ export function SongsContextProvider({ children }: SongsContextProviderProps) {
 
   return (
     <SongsContext.Provider
-      value={{ isLoading, songs, addSong, songFilters, setSongFilters }}
+      value={{
+        isLoading,
+        songs,
+        addSong,
+        updateSong,
+        filters,
+        setFilters,
+      }}
     >
       {children}
     </SongsContext.Provider>

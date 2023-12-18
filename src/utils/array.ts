@@ -8,3 +8,10 @@ export const enumToRadioOption = <T extends object>(
     value: key as keyof T,
   }))
 }
+
+export const enumToStringArray = <T extends { [key: string]: any }>(
+  obj: T,
+): [keyof T, ...(keyof T)[]] => {
+  const keys = Object.keys(obj)
+  return [keys[0], ...keys.slice(1)]
+}

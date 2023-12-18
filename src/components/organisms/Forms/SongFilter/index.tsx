@@ -15,7 +15,7 @@ import {
 } from './validation'
 
 export function SongFilterForm() {
-  const { songFilters, setSongFilters } = useSongs()
+  const { filters: songFilters, setFilters: setSongFilters } = useSongs()
   const { isOpen, onClose, onToggle } = useDisclose()
   const formMethods = useForm<SongFilterInputs>({
     resolver: songFilterResolver,

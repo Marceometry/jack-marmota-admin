@@ -1,22 +1,38 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Checkbox, Input } from '@/components/atoms'
+import { Button, Input, RadioGroup } from '@/components/atoms'
 import { Drawer, Form } from '@/components/molecules'
 import { Song, useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
-import { SongFormInputs, songFormResolver } from './validation'
+import {
+  regionOptions,
+  SongFormInputs,
+  songFormResolver,
+  statusOptions,
+} from './validation'
 
 type Props = {
   song?: Song
+  trigger?: React.ReactNode
 }
 
-export function SongForm({ song }: Props) {
-  const { addSong } = useSongs()
+export function SongForm({ song, trigger }: Props) {
+  const { addSong, updateSong } = useSongs()
   const { isOpen, onClose, onToggle } = useDisclose()
-  const formMethods = useForm<SongFormInputs>({
-    resolver: songFormResolver,
-  })
+  const formMethods = useForm<SongFormInputs>({ resolver: songFormResolver })
+
+  useEffect(() => {
+    if (song && isOpen) {
+      formMethods.setValue('name', song.name)
+      formMethods.setValue('artist', song.artist)
+      formMethods.setValue('region', song.region)
+      formMethods.setValue('status', song.status)
+      formMethods.setValue('end', song.end)
+      formMethods.setValue('start', song.start)
+    }
+  }, [song, isOpen])
 
   function handleClear() {
     formMethods.reset()
@@ -24,7 +40,7 @@ export function SongForm({ song }: Props) {
   }
 
   function handleSubmit(data: SongFormInputs) {
-    addSong({ ...data, isReady: data.ready, isNational: data.national })
+    song ? updateSong({ ...song, ...data }) : addSong(data)
     handleClear()
   }
 
@@ -33,7 +49,7 @@ export function SongForm({ song }: Props) {
       open={isOpen}
       onOpenChange={onToggle}
       width={440}
-      trigger={<Button>Adicionar música</Button>}
+      trigger={trigger || <Button>Adicionar música</Button>}
       title={song ? 'Editar música' : 'Adicionar música'}
     >
       <Form formMethods={formMethods} onSubmit={handleSubmit}>
@@ -46,10 +62,8 @@ export function SongForm({ song }: Props) {
             <Input<SongFormInputs> name="end" label="Fim" />
           </div>
 
-          <div>
-            <Checkbox<SongFormInputs> name="national" label="Nacional" />
-            <Checkbox<SongFormInputs> name="ready" label="Pronto para tocar" />
-          </div>
+          <RadioGroup<SongFormInputs> name="region" options={regionOptions} />
+          <RadioGroup<SongFormInputs> name="status" options={statusOptions} />
 
           <div className="flex gap-3 mt-4">
             <Button fullWidth variant="outline" onClick={handleClear}>
