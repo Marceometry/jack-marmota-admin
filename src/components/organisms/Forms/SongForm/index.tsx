@@ -4,8 +4,9 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, RadioGroup } from '@/components/atoms'
 import { Form, Modal } from '@/components/molecules'
-import { Song, useSongs } from '@/contexts'
+import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
+import { Song } from '@/types'
 import {
   regionOptions,
   SongFormInputs,
@@ -40,7 +41,11 @@ export function SongForm({ song, trigger }: Props) {
   }
 
   function handleSubmit(data: SongFormInputs) {
-    song ? updateSong({ ...song, ...data }) : addSong(data)
+    if (song) {
+      updateSong({ ...song, ...data })
+    } else {
+      addSong(data)
+    }
     handleClear()
   }
 

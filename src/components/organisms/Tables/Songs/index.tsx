@@ -1,6 +1,6 @@
 'use client'
 
-import { Edit, Trash } from 'lucide-react'
+import { Edit } from 'lucide-react'
 import { IconButton } from '@/components/atoms'
 import { Table, TableColumn } from '@/components/molecules'
 import {
@@ -8,7 +8,8 @@ import {
   SongFilterForm,
   SongForm,
 } from '@/components/organisms'
-import { Song, songFilter, useSongs } from '@/contexts'
+import { songFilter, useSongs } from '@/contexts'
+import { Song } from '@/types'
 
 const tableHeader = (
   <div className="flex items-center gap-3">

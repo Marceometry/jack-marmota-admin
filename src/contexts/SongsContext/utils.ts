@@ -1,4 +1,5 @@
-import { Song, SongFilters } from '.'
+import { SongFilters } from '@/contexts'
+import { Song } from '@/types'
 
 export const songFilter = (song: Song, filters: SongFilters) => {
   const { region, status } = filters

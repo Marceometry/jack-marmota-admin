@@ -8,9 +8,7 @@ type Callback<T extends any[]> = (...args: T) => Promise<any> | any
 type Options = {
   toastText?: ToastText
   toastError?: ToastText
-  toastDuration?: number | null
-  toastSuccessAsInfo?: boolean
-  startInfoToast?: string
+  toastDuration?: number
 }
 
 export const useApiCall = (startLoadingState = true) => {
@@ -26,24 +24,17 @@ export const useApiCall = (startLoadingState = true) => {
     return async (...args: T) => {
       try {
         if (!navigator.onLine) {
-          toast('Você está offline', 'warning')
+          toast('Você está offline', 'error')
           throw new Error('Offline')
         }
 
         setIsLoading(true)
-        const info = options?.startInfoToast
-        const closeToast = info && toast(info, 'info')
         const data = await callback(...args)
 
-        if (closeToast) closeToast()
         if (options?.toastText) {
           const text = generateToast(data, options.toastText)
           if (text) {
-            toast(
-              text,
-              options.toastSuccessAsInfo ? 'info' : 'success',
-              options.toastDuration,
-            )
+            toast(text, 'success', options.toastDuration)
           }
         }
 

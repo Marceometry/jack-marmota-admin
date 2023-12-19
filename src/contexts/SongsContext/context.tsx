@@ -4,9 +4,9 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { useApiCall } from '@/hooks'
 import { useFirebaseDatabase } from '@/lib/firebase'
+import { Song } from '@/types'
 import {
   CreateSongModel,
-  Song,
   SongFilters,
   SongsContextData,
   SongsContextProviderProps,

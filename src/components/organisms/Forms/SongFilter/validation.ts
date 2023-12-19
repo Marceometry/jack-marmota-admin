@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { RadioDefaultValueLabel } from '@/components/atoms'
-import { SongRegionLabel, SongStatusLabel } from '@/contexts'
+import { SongRegionLabel, SongStatusLabel } from '@/types'
 import { enumToRadioOption, enumToStringArray } from '@/utils'
 
 const regions = { ...RadioDefaultValueLabel, ...SongRegionLabel }

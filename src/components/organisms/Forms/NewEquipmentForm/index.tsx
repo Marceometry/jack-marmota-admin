@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { Button, Input } from '@/components/atoms'
-import { Modal, Form } from '@/components/molecules'
+import { Form, Modal } from '@/components/molecules'
 import { useDisclose } from '@/hooks'
 import { NewEquipmentFormInputs, newEquipmentFormResolver } from './validation'
 

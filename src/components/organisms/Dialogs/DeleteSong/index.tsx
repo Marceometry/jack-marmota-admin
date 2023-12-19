@@ -3,8 +3,9 @@
 import { Trash } from 'lucide-react'
 import { Button, IconButton } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
-import { Song, useSongs } from '@/contexts'
+import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
+import { Song } from '@/types'
 
 type Props = {
   song: Song
