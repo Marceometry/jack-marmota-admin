@@ -8,7 +8,6 @@ import { dynamicSort, filterByText } from '@/utils'
 
 type Item = {
   id: string | number
-  [x: string]: React.ReactNode
 }
 
 export type TableColumn<T extends Item> = {
@@ -20,17 +19,17 @@ export type TableColumn<T extends Item> = {
 type Props<T extends Item> = {
   data: T[]
   columns: TableColumn<T>[]
-  defaultSortParam: keyof T
-  hideResultCount?: boolean
   tableHeader?: React.ReactNode
+  hideResultCount?: boolean
+  defaultSortParam?: keyof T
 }
 
 export function Table<T extends Item>({
   data,
   columns,
-  defaultSortParam,
-  hideResultCount,
   tableHeader,
+  hideResultCount,
+  defaultSortParam = columns.filter((c) => c.key)[0]?.key!,
 }: Props<T>) {
   const [searchText, setSearchText] = useState('')
   const [sortParam, setSortParam] = useState<keyof T>(defaultSortParam)
@@ -54,7 +53,9 @@ export function Table<T extends Item>({
       <div className="mb-3 gap-3 w-full flex justify-end">
         <SearchInput clearable onChange={setSearchText} />
 
-        {tableHeader}
+        {tableHeader && (
+          <div className="flex items-center gap-3">{tableHeader}</div>
+        )}
       </div>
 
       <div className="max-h-[65vh] overflow-y-auto">
@@ -97,22 +98,22 @@ export function Table<T extends Item>({
                 </td>
               </tr>
             ) : (
-              orderedData.map((item) => {
-                return (
-                  <tr key={item.id}>
-                    {columns.map((column) => (
-                      <td
-                        key={column.label}
-                        className="py-2 px-4 text-left border-b border-b-zinc-800"
-                      >
-                        {(column.key
-                          ? item[column.key]
-                          : column.render?.(item)) || '-'}
-                      </td>
-                    ))}
-                  </tr>
-                )
-              })
+              orderedData.map((item) => (
+                <tr key={item.id}>
+                  {columns.map((column) => (
+                    <td
+                      key={column.label}
+                      className="py-2 px-4 text-left border-b border-b-zinc-800"
+                    >
+                      {(column.render
+                        ? column.render?.(item)
+                        : column.key
+                        ? item[column.key]
+                        : '') || '-'}
+                    </td>
+                  ))}
+                </tr>
+              ))
             )}
           </tbody>
         </table>

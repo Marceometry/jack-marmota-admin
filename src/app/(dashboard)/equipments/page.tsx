@@ -20,7 +20,6 @@ export default function Page() {
       data={data}
       columns={columns}
       tableHeader={<NewEquipmentForm />}
-      defaultSortParam="name"
       hideResultCount
     />
   )

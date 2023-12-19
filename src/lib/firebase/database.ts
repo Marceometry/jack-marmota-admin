@@ -1,7 +1,7 @@
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database'
 import { firebaseApp } from './config'
 
-type FirebaseDatabasePath = 'songs'
+type FirebaseDatabasePath = 'songs' | 'song-lists'
 
 type Item = { id: string }
 
