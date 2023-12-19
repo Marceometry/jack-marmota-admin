@@ -19,3 +19,8 @@ body {
 * {
   @apply scrollbar-thin scrollbar-corner-zinc-800 scrollbar-track-zinc-800 scrollbar-thumb-zinc-700 active:scrollbar-thumb-zinc-600;
 }
+
+[list]::-webkit-calendar-picker-indicator,
+*::-webkit-list-button {
+  display: none !important;
+}

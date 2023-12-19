@@ -53,7 +53,6 @@ export function SongForm({ song, trigger }: Props) {
     <Modal
       open={isOpen}
       onOpenChange={onToggle}
-      width={440}
       trigger={trigger || <Button>Adicionar música</Button>}
       title={song ? 'Editar música' : 'Adicionar música'}
     >
@@ -70,13 +69,11 @@ export function SongForm({ song, trigger }: Props) {
           <RadioGroup<SongFormInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFormInputs> name="status" options={statusOptions} />
 
-          <div className="flex gap-3 mt-4">
-            <Button fullWidth variant="outline" onClick={handleClear}>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <Button variant="outline" onClick={handleClear}>
               Cancelar
             </Button>
-            <Button fullWidth type="submit">
-              Confirmar
-            </Button>
+            <Button type="submit">Confirmar</Button>
           </div>
         </div>
       </Form>

@@ -36,7 +36,7 @@ export function Modal({
         <Dialog.Content
           style={{ width }}
           className={twJoin(
-            'w-96 max-w-[100vw] flex flex-col bg-zinc-900',
+            'w-[440px] max-w-[100vw] flex flex-col bg-zinc-900',
             'fixed z-50 focus:outline-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]',
             behaviour === 'drawer'
               ? 'px-8 py-16 border-l border-l-zinc-800 h-full top-0 right-0 data-[state=open]:animate-drawerShow data-[state=closed]:animate-drawerHide'
@@ -46,6 +46,7 @@ export function Modal({
           {behaviour === 'drawer' && (
             <Dialog.Close asChild>
               <IconButton
+                variant="ghost"
                 className="absolute top-8 right-8"
                 aria-label="Fechar modal"
                 icon={<XIcon />}

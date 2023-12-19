@@ -5,14 +5,14 @@ type Props = {
   onClick?: () => void
   className?: string
   square?: boolean
-  variant?: 'fill' | 'text'
+  variant?: 'fill' | 'ghost'
   icon: React.ReactNode
   'aria-label': string
 }
 
 export const IconButton = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { className, icon, square = true, variant = 'text', ...rest } = props
+    const { className, icon, square = true, variant = 'fill', ...rest } = props
     return (
       <button
         {...rest}

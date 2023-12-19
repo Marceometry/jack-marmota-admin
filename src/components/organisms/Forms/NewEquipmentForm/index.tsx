@@ -23,7 +23,6 @@ export function NewEquipmentForm() {
     <Modal
       open={isOpen}
       onOpenChange={onToggle}
-      width={440}
       trigger={<Button>Adicionar equipamento</Button>}
       title="Adicionar novo equipamento"
     >
@@ -39,14 +38,12 @@ export function NewEquipmentForm() {
             required
           />
 
-          <div className="flex gap-3 mt-4">
-            <Button fullWidth variant="outline" onClick={handleCancel}>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <Button variant="outline" onClick={handleCancel}>
               Cancelar
             </Button>
 
-            <Button fullWidth type="submit">
-              Confirmar
-            </Button>
+            <Button type="submit">Confirmar</Button>
           </div>
         </div>
       </Form>

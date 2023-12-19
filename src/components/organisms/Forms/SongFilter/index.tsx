@@ -37,14 +37,9 @@ export function SongFilterForm() {
     <Modal
       open={isOpen}
       onOpenChange={onToggle}
-      width={440}
       title="Filtrar músicas"
       trigger={
-        <IconButton
-          aria-label="Filtrar músicas"
-          variant="fill"
-          icon={<Filter size={20} />}
-        />
+        <IconButton aria-label="Filtrar músicas" icon={<Filter size={20} />} />
       }
     >
       <Form formMethods={formMethods} onSubmit={handleSubmit}>
@@ -52,13 +47,11 @@ export function SongFilterForm() {
           <RadioGroup<SongFilterInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFilterInputs> name="status" options={statusOptions} />
 
-          <div className="flex gap-3 mt-4">
-            <Button fullWidth variant="outline" onClick={handleClear}>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <Button variant="outline" onClick={handleClear}>
               Limpar
             </Button>
-            <Button fullWidth type="submit">
-              Filtrar
-            </Button>
+            <Button type="submit">Filtrar</Button>
           </div>
         </div>
       </Form>

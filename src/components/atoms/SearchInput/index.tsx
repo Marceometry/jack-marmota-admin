@@ -45,7 +45,7 @@ export function SearchInput({
         onChange={handleChange}
         placeholder={placeholder}
         className={twMerge(
-          'w-full flex-1 text-sm rounded-md py-2 pl-10 border border-zinc-700 placeholder:text-zinc-500 bg-transparent transition-all',
+          'w-full flex-1 text-sm rounded-md py-2.5 pl-10 border border-zinc-700 placeholder:text-zinc-500 bg-transparent transition-all',
           clearable ? 'pr-8' : 'pr-3',
           className,
         )}

@@ -1,4 +1,5 @@
 export * from './useApiCall'
+export * from './useClipboard'
 export * from './useDebouncedValue'
 export * from './useDisclose'
 export * from './useToast'

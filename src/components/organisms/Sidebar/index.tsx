@@ -27,6 +27,7 @@ export function Sidebar() {
         onClick={onToggle}
         icon={isOpen ? <XIcon /> : <MenuIcon />}
         aria-label={isOpen ? 'Fechar barra lateral' : 'Abrir barra lateral'}
+        variant="ghost"
         className="m-4"
       />
 

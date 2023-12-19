@@ -20,11 +20,7 @@ export function DeleteSongDialog({ song }: Props) {
   }
 
   const trigger = (
-    <IconButton
-      variant="fill"
-      aria-label="Excluir música"
-      icon={<Trash size={16} />}
-    />
+    <IconButton aria-label="Excluir música" icon={<Trash size={16} />} />
   )
 
   return (
@@ -36,13 +32,11 @@ export function DeleteSongDialog({ song }: Props) {
       title={`Excluir ${song.name}?`}
       description="Esta ação não poderá ser desfeita."
     >
-      <div className="flex gap-4">
-        <Button fullWidth variant="outline" onClick={onClose}>
+      <div className="grid grid-cols-2 gap-4">
+        <Button variant="outline" onClick={onClose}>
           Cancelar
         </Button>
-        <Button fullWidth onClick={handleDeleteSong}>
-          Excluir
-        </Button>
+        <Button onClick={handleDeleteSong}>Excluir</Button>
       </div>
     </Modal>
   )

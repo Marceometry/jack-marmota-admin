@@ -4,30 +4,21 @@ import { Edit } from 'lucide-react'
 import { IconButton } from '@/components/atoms'
 import { Table, TableColumn } from '@/components/molecules'
 import {
+  CopyDialog,
   DeleteSongDialog,
   SongFilterForm,
   SongForm,
 } from '@/components/organisms'
+import { SONG_COPY_TEMPLATES } from '@/constants'
 import { songFilter, useSongs } from '@/contexts'
 import { Song } from '@/types'
-
-const tableHeader = (
-  <div className="flex items-center gap-3">
-    <SongFilterForm />
-    <SongForm />
-  </div>
-)
 
 const songActions = (item: Song) => (
   <div className="flex gap-3 w-fit">
     <SongForm
       song={item}
       trigger={
-        <IconButton
-          variant="fill"
-          aria-label="Editar música"
-          icon={<Edit size={16} />}
-        />
+        <IconButton aria-label="Editar música" icon={<Edit size={16} />} />
       }
     />
     <DeleteSongDialog song={item} />
@@ -49,6 +40,14 @@ export function SongsTable() {
   const filteredSongs = hasFilters
     ? songs.filter((song) => songFilter(song, filters))
     : songs
+
+  const tableHeader = (
+    <div className="flex items-center gap-3">
+      <CopyDialog list={filteredSongs} templates={SONG_COPY_TEMPLATES} />
+      <SongFilterForm />
+      <SongForm />
+    </div>
+  )
 
   return (
     <Table
