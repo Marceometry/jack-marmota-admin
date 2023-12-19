@@ -33,10 +33,11 @@ export type SongFilters = {
 export type SongsContextData = {
   isLoading: boolean
   songs: Song[]
-  addSong: (data: CreateSongModel) => void
-  updateSong: (data: Song) => void
   filters: SongFilters
   setFilters: (data: SongFilters) => void
+  addSong: (data: CreateSongModel) => void
+  updateSong: (data: Song) => void
+  deleteSong: (id: string) => void
 }
 
 export type SongsContextProviderProps = {

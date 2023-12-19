@@ -1,4 +1,6 @@
+export * from './Dialogs'
 export * from './Forms'
 export * from './Header'
 export * from './PageTitle'
 export * from './Sidebar'
+export * from './Tables'

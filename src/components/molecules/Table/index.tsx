@@ -51,7 +51,7 @@ export function Table<T extends Item>({
 
   return (
     <div>
-      <div className="mb-2 gap-4 w-full flex justify-end">
+      <div className="mb-3 gap-3 w-full flex justify-end">
         <SearchInput clearable onChange={setSearchText} />
 
         {tableHeader}

@@ -31,25 +31,27 @@ export function Modal({
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="bg-zinc-950/50 fixed inset-0 z-50 data-[state=open]:animate-overlayShow data-[state=closed]:animate-overlayHide" />
+        <Dialog.Overlay className="bg-zinc-950/70 fixed inset-0 z-50 data-[state=open]:animate-overlayShow data-[state=closed]:animate-overlayHide" />
 
         <Dialog.Content
           style={{ width }}
           className={twJoin(
-            'w-96 max-w-[100vw] p-8 py-16 flex flex-col border-l border-l-zinc-800 bg-zinc-900',
-            'fixed top-0 right-0 z-50 focus:outline-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]',
+            'w-96 max-w-[100vw] flex flex-col bg-zinc-900',
+            'fixed z-50 focus:outline-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px]',
             behaviour === 'drawer'
-              ? 'h-full data-[state=open]:animate-drawerShow data-[state=closed]:animate-drawerHide'
-              : 'data-[state=open]:animate-dialogShow data-[state=closed]:animate-dialogHide',
+              ? 'px-8 py-16 border-l border-l-zinc-800 h-full top-0 right-0 data-[state=open]:animate-drawerShow data-[state=closed]:animate-drawerHide'
+              : 'p-6 rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 data-[state=open]:animate-dialogShow data-[state=closed]:animate-dialogHide',
           )}
         >
-          <Dialog.Close asChild>
-            <IconButton
-              className="absolute top-8 right-8"
-              aria-label="Fechar modal"
-              icon={<XIcon />}
-            />
-          </Dialog.Close>
+          {behaviour === 'drawer' && (
+            <Dialog.Close asChild>
+              <IconButton
+                className="absolute top-8 right-8"
+                aria-label="Fechar modal"
+                icon={<XIcon />}
+              />
+            </Dialog.Close>
+          )}
 
           {title && (
             <Dialog.Title className="text-xl mb-6 font-semibold">

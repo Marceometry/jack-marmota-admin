@@ -3,7 +3,7 @@
 import { Filter } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { Button, IconButton, RadioGroup } from '@/components/atoms'
-import { Modal, Form } from '@/components/molecules'
+import { Form, Modal } from '@/components/molecules'
 import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
 import {
@@ -15,21 +15,21 @@ import {
 } from './validation'
 
 export function SongFilterForm() {
-  const { filters: songFilters, setFilters: setSongFilters } = useSongs()
+  const { filters, setFilters } = useSongs()
   const { isOpen, onClose, onToggle } = useDisclose()
   const formMethods = useForm<SongFilterInputs>({
     resolver: songFilterResolver,
-    defaultValues: { ...songFilterDefaultValues, ...songFilters },
+    defaultValues: { ...songFilterDefaultValues, ...filters },
   })
 
   function handleClear() {
-    setSongFilters(songFilterDefaultValues)
+    setFilters(songFilterDefaultValues)
     formMethods.reset()
     onClose()
   }
 
   function handleSubmit(data: SongFilterInputs) {
-    setSongFilters(data)
+    setFilters(data)
     onClose()
   }
 
