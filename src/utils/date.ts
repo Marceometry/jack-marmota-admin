@@ -9,6 +9,6 @@ export const minutesToHoursText = (min?: number) => {
   return `${hours}h${minutes ? `${minutes}min` : ''}`
 }
 
-export const formatDateAndTime = (date: Date | string) => {
-  return format(new Date(date), 'dd/MM/yyyy HH:mm')
+export const formatDate = (date: Date | string) => {
+  return format(new Date(date), 'dd/MM/yyyy')
 }

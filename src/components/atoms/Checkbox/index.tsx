@@ -1,17 +1,18 @@
-import { FieldValues, Path, useFormContext } from 'react-hook-form'
-
-type Props<T> = {
-  name: Path<T>
-  label: string
+type Props = {
+  label?: string
+  checked?: boolean
+  onChange?: (value: boolean) => void
 }
 
-export function Checkbox<T extends FieldValues>({ name, label }: Props<T>) {
-  const { register } = useFormContext<T>()
-  const inputRegister = register(name)
-
+export function Checkbox({ label, checked, onChange }: Props) {
   return (
     <label className="w-fit flex items-center gap-2 cursor-pointer">
-      <input {...inputRegister} type="checkbox" />
+      <input
+        type="checkbox"
+        className="h-4 w-4 cursor-pointer"
+        checked={checked}
+        onChange={(e) => onChange?.(e.target.checked)}
+      />
       {label}
     </label>
   )

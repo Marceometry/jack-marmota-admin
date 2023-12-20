@@ -39,7 +39,7 @@ export function SongFilterForm() {
       onOpenChange={onToggle}
       title="Filtrar músicas"
       trigger={
-        <IconButton aria-label="Filtrar músicas" icon={<Filter size={20} />} />
+        <IconButton aria-label="Filtrar músicas" icon={<Filter size={16} />} />
       }
     >
       <Form formMethods={formMethods} onSubmit={handleSubmit}>

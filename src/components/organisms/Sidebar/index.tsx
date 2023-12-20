@@ -6,11 +6,7 @@ import { usePathname } from 'next/navigation'
 import { twJoin } from 'tailwind-merge'
 import { IconButton } from '@/components/atoms'
 import { useDisclose } from '@/hooks'
-import {
-  DASHBOARD_ROUTE_ICONS,
-  DASHBOARD_ROUTE_LABELS,
-  DASHBOARD_ROUTES,
-} from '@/routes'
+import { ROUTE_ICONS, ROUTE_LABELS, SIDEBAR_ROUTES } from '@/routes'
 
 export function Sidebar() {
   const { isOpen, onToggle } = useDisclose({ defaultValue: true })
@@ -33,10 +29,11 @@ export function Sidebar() {
 
       <nav>
         <ul>
-          {Object.values(DASHBOARD_ROUTES).map((route) => {
-            const Icon = DASHBOARD_ROUTE_ICONS[route]
-            const label = DASHBOARD_ROUTE_LABELS[route]
-            const isActive = route === pathname
+          {Object.values(SIDEBAR_ROUTES).map((route) => {
+            const Icon = ROUTE_ICONS[route]
+            const label = ROUTE_LABELS[route]
+            const isActive =
+              route.length === 1 ? pathname === '/' : pathname.startsWith(route)
 
             return (
               <li key={route}>
@@ -48,7 +45,7 @@ export function Sidebar() {
                     isActive ? 'text-yellow-500 border-l-yellow-500' : '',
                   )}
                 >
-                  <Icon className="shrink-0" />
+                  <Icon className="shrink-0" size={20} />
                   <span
                     className={twJoin(
                       'transition-opacity whitespace-nowrap',

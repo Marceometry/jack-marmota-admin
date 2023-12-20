@@ -27,7 +27,7 @@ export const Button = forwardRef(
         ref={ref}
         type={type}
         className={twMerge(
-          'py-2 px-6 rounded-md transition-all hover:bg-zinc-700',
+          'py-2 px-6 text-sm rounded-md transition-all hover:bg-zinc-700',
           variant === 'fill'
             ? 'border border-zinc-800 bg-zinc-800'
             : 'border border-zinc-700',

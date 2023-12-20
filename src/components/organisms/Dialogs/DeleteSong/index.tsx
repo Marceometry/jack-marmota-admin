@@ -29,7 +29,7 @@ export function DeleteSongDialog({ song }: Props) {
       onOpenChange={onToggle}
       trigger={trigger}
       behaviour="dialog"
-      title={`Excluir ${song.name}?`}
+      title={`Excluir "${song.name}"?`}
       description="Esta ação não poderá ser desfeita."
     >
       <div className="grid grid-cols-2 gap-4">

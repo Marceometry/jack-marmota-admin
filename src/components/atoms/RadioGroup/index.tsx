@@ -30,7 +30,7 @@ export const RadioGroup = <T extends FieldValues>({
         {options.map((option) => (
           <label
             key={option.value}
-            className="flex items-center gap-1.5 cursor-pointer"
+            className="flex items-center gap-1.5 text-sm cursor-pointer"
           >
             <input
               type="radio"

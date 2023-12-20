@@ -43,16 +43,17 @@ export function Modal({
               : 'p-6 rounded-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 data-[state=open]:animate-dialogShow data-[state=closed]:animate-dialogHide',
           )}
         >
-          {behaviour === 'drawer' && (
-            <Dialog.Close asChild>
-              <IconButton
-                variant="ghost"
-                className="absolute top-8 right-8"
-                aria-label="Fechar modal"
-                icon={<XIcon />}
-              />
-            </Dialog.Close>
-          )}
+          <Dialog.Close asChild>
+            <IconButton
+              variant="ghost"
+              aria-label="Fechar modal"
+              className={twJoin(
+                'absolute',
+                behaviour === 'drawer' ? 'top-16 right-8' : 'top-6 right-6',
+              )}
+              icon={<XIcon />}
+            />
+          </Dialog.Close>
 
           {title && (
             <Dialog.Title className="text-xl mb-6 font-semibold">

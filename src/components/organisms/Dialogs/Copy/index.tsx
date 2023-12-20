@@ -31,7 +31,7 @@ export function CopyDialog({ list, templates }: Props) {
       description="Você pode customizar o template abaixo para alterar o formato do texto final"
       behaviour="dialog"
       trigger={
-        <IconButton aria-label="Copiar lista" icon={<Copy size={20} />} />
+        <IconButton aria-label="Copiar lista" icon={<Copy size={16} />} />
       }
     >
       <input
@@ -39,7 +39,7 @@ export function CopyDialog({ list, templates }: Props) {
         value={template}
         onChange={(e) => setTemplate(e.target.value)}
         placeholder={templates[0]}
-        className="mb-6 w-full rounded-md py-3 px-4 border border-zinc-700 hover:border-zinc-600 placeholder:text-zinc-500 bg-transparent transition-all"
+        className="mb-6 w-full rounded-md text-sm py-2 px-3 border border-zinc-700 hover:border-zinc-600 placeholder:text-zinc-500 bg-transparent transition-all"
       />
       <datalist id={datalistId}>
         {templates.map((value) => (

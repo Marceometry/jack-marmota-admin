@@ -69,7 +69,7 @@ export function SongForm({ song, trigger }: Props) {
           <RadioGroup<SongFormInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFormInputs> name="status" options={statusOptions} />
 
-          <div className="grid grid-cols-2 gap-3 mt-4">
+          <div className="grid grid-cols-2 gap-3 mt-2">
             <Button variant="outline" onClick={handleClear}>
               Cancelar
             </Button>

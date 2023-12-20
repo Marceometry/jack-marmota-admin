@@ -1,25 +1,18 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { DASHBOARD_ROUTE_LABELS } from '@/routes'
+import { ROUTE_LABELS } from '@/routes'
 
 export function PageTitle() {
   const pathname = usePathname()
 
-  const paths = pathname.slice(1).split('/')
+  const label = ROUTE_LABELS[pathname]
 
-  const labels = paths.map((_, index, array) => {
-    const path = array.slice(0, index + 1).join('/')
-    return { path, label: DASHBOARD_ROUTE_LABELS[`/${path}`] }
-  })
-
-  if (!labels?.length) return null
+  if (!label) return null
 
   return (
-    <div>
-      <h2 className="mb-4 text-2xl font-medium">
-        {labels.map((item) => item.label).join(' > ')}
-      </h2>
+    <div className="mb-4 text-xl font-medium">
+      <strong>{label}</strong>
     </div>
   )
 }

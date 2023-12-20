@@ -19,16 +19,20 @@ export type TableColumn<T extends Item> = {
 type Props<T extends Item> = {
   data: T[]
   columns: TableColumn<T>[]
+  onRowClick?: (item: T) => void
   tableHeader?: React.ReactNode
   hideResultCount?: boolean
   defaultSortParam?: keyof T
+  justifyHeader?: 'start' | 'end'
 }
 
 export function Table<T extends Item>({
   data,
   columns,
+  onRowClick,
   tableHeader,
   hideResultCount,
+  justifyHeader = 'end',
   defaultSortParam = columns.filter((c) => c.key)[0]?.key!,
 }: Props<T>) {
   const [searchText, setSearchText] = useState('')
@@ -50,7 +54,12 @@ export function Table<T extends Item>({
 
   return (
     <div>
-      <div className="mb-3 gap-3 w-full flex justify-end">
+      <div
+        className={twJoin(
+          'mb-3 gap-3 w-full flex',
+          justifyHeader === 'end' ? 'justify-end' : 'justify-start',
+        )}
+      >
         <SearchInput clearable onChange={setSearchText} />
 
         {tableHeader && (
@@ -99,7 +108,15 @@ export function Table<T extends Item>({
               </tr>
             ) : (
               orderedData.map((item) => (
-                <tr key={item.id}>
+                <tr
+                  key={item.id}
+                  onClick={() => onRowClick?.(item)}
+                  className={
+                    onRowClick
+                      ? 'cursor-pointer transition-colors hover:bg-zinc-700 active:bg-zinc-800'
+                      : ''
+                  }
+                >
                   {columns.map((column) => (
                     <td
                       key={column.label}

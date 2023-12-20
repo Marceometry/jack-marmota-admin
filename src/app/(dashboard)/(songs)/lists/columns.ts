@@ -1,12 +1,12 @@
 import { TableColumn } from '@/components/molecules'
 import { SongList } from '@/types'
-import { formatDateAndTime, minutesToHoursText } from '@/utils'
+import { formatDate, minutesToHoursText } from '@/utils'
 
 export const columns: TableColumn<SongList>[] = [
   {
     label: 'Data',
     key: 'date',
-    render: ({ date }) => formatDateAndTime(date),
+    render: ({ date }) => formatDate(date),
   },
   { label: 'Nome', key: 'name' },
   {
