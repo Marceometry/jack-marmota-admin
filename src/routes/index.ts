@@ -5,34 +5,34 @@ type RouteList<T extends string = string> = {
   [key in T]: Route
 }
 
-type DashboardRoutes = 'HOME' | 'SONGS' | 'SONG_LISTS' | 'EQUIPMENTS'
+type DashboardRoutes = 'HOME' | 'SONGS' | 'SETLISTS' | 'EQUIPMENTS'
 
 export const SIDEBAR_ROUTES: RouteList<DashboardRoutes> = {
   HOME: '/',
   SONGS: '/songs',
-  SONG_LISTS: '/lists',
+  SETLISTS: '/setlists',
   EQUIPMENTS: '/equipments',
 }
 
-type Routes = DashboardRoutes | 'LOGIN' | 'NEW_SONG_LIST'
+type Routes = DashboardRoutes | 'LOGIN' | 'NEW_SETLIST'
 
 export const ROUTES: RouteList<Routes> = {
   ...SIDEBAR_ROUTES,
-  NEW_SONG_LIST: '/lists/new',
+  NEW_SETLIST: '/setlists/new',
   LOGIN: '/',
 }
 
 export const ROUTE_LABELS = {
   [ROUTES.HOME]: 'Dashboard',
   [ROUTES.SONGS]: 'Músicas',
-  [ROUTES.SONG_LISTS]: 'Listas',
-  [ROUTES.NEW_SONG_LIST]: 'Nova lista',
+  [ROUTES.SETLISTS]: 'Setlists',
+  [ROUTES.NEW_SETLIST]: 'Nova setlist',
   [ROUTES.EQUIPMENTS]: 'Equipamentos',
 }
 
 export const ROUTE_ICONS = {
   [ROUTES.HOME]: LayoutDashboard,
   [ROUTES.SONGS]: AudioLines,
-  [ROUTES.SONG_LISTS]: ListMusic,
+  [ROUTES.SETLISTS]: ListMusic,
   [ROUTES.EQUIPMENTS]: Cog,
 }

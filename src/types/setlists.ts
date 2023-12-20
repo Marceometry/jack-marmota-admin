@@ -1,6 +1,6 @@
 import { Song } from '.'
 
-export type SongList = {
+export type SetList = {
   id: string
   name: string
   date: Date

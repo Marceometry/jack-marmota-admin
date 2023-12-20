@@ -30,7 +30,7 @@ export default function Page() {
       <div>
         <Form formMethods={formMethods} onSubmit={handleSubmit}>
           <div className="grid grid-cols-[2fr_1fr] gap-4 mb-6 max-w-md">
-            <Input name="name" label="Nome da lista" required />
+            <Input name="name" label="Nome da setlist" required />
             <Input name="date" type="date" label="Data" required />
           </div>
         </Form>

@@ -1,8 +1,8 @@
 import { TableColumn } from '@/components/molecules'
-import { SongList } from '@/types'
+import { SetList } from '@/types'
 import { formatDate, minutesToHoursText } from '@/utils'
 
-export const columns: TableColumn<SongList>[] = [
+export const columns: TableColumn<SetList>[] = [
   {
     label: 'Data',
     key: 'date',
