@@ -18,12 +18,17 @@ export function SetListsContextProvider({
   children,
 }: SetListsContextProviderProps) {
   const { call, isLoading, setIsLoading } = useApiCall(true)
-  const { onChange, add, remove } = useFirebaseDatabase<SetList>('set-lists')
+  const { onChange, onChangeItem, add, remove } =
+    useFirebaseDatabase<SetList>('setlists')
   const [filters, setFilters] = useState<SetListFilters>({})
-  const [setLists, setSetLists] = useState<SetList[]>([])
+  const [setlists, setSetlists] = useState<SetList[]>([])
 
   const addSetList = call(
-    (data: CreateSetListModel) => add({ id: uuid(), ...data }),
+    async (data: CreateSetListModel) => {
+      const id = uuid()
+      await add({ id, ...data, songs: [], songsCount: 0 })
+      return id
+    },
     { toastText: 'Adicionada com sucesso!' },
   )
 
@@ -37,7 +42,7 @@ export function SetListsContextProvider({
 
   useEffect(() => {
     const unsubscribe = onChange((data) => {
-      setSetLists(data)
+      setSetlists(data)
       setIsLoading(false)
     })
     return () => {
@@ -49,9 +54,10 @@ export function SetListsContextProvider({
     <SetListsContext.Provider
       value={{
         isLoading,
-        setLists,
+        setlists,
         filters,
         setFilters,
+        onChangeItem,
         addSetList,
         updateSetList,
         deleteSetList,

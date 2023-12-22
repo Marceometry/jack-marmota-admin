@@ -14,11 +14,10 @@ export const SIDEBAR_ROUTES: RouteList<DashboardRoutes> = {
   EQUIPMENTS: '/equipments',
 }
 
-type Routes = DashboardRoutes | 'LOGIN' | 'NEW_SETLIST'
+type Routes = DashboardRoutes | 'LOGIN'
 
 export const ROUTES: RouteList<Routes> = {
   ...SIDEBAR_ROUTES,
-  NEW_SETLIST: '/setlists/new',
   LOGIN: '/',
 }
 
@@ -26,7 +25,6 @@ export const ROUTE_LABELS = {
   [ROUTES.HOME]: 'Dashboard',
   [ROUTES.SONGS]: 'Músicas',
   [ROUTES.SETLISTS]: 'Setlists',
-  [ROUTES.NEW_SETLIST]: 'Nova setlist',
   [ROUTES.EQUIPMENTS]: 'Equipamentos',
 }
 

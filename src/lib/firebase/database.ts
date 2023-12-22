@@ -1,7 +1,7 @@
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database'
 import { firebaseApp } from './config'
 
-type FirebaseDatabasePath = 'songs' | 'set-lists'
+type FirebaseDatabasePath = 'songs' | 'setlists'
 
 type Item = { id: string }
 
@@ -26,6 +26,12 @@ export const useFirebaseDatabase = <T extends Item>(
     )
   }
 
+  const onChangeItem = (id: string, callback: (data: T) => void) => {
+    return onValue(ref(database, `${path}/${id}`), (data) =>
+      callback(data.exists() ? data.val() : null),
+    )
+  }
+
   const remoteAdd = (item: T) => {
     return set(ref(database, `${path}/${item.id}`), item)
   }
@@ -36,6 +42,7 @@ export const useFirebaseDatabase = <T extends Item>(
 
   return {
     onChange,
+    onChangeItem,
     add: remoteAdd,
     remove: remoteRemove,
   }

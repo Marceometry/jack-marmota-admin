@@ -10,5 +10,26 @@ export const minutesToHoursText = (min?: number) => {
 }
 
 export const formatDate = (date: Date | string) => {
-  return format(new Date(date), 'dd/MM/yyyy')
+  try {
+    return format(new Date(date), 'dd/MM/yyyy')
+  } catch (error) {
+    return ''
+  }
+}
+
+export const dateInputToValue = (date: Date | string) => {
+  try {
+    return new Date(`${date} 00:00`).toISOString()
+  } catch (error) {
+    return ''
+  }
+}
+
+export const dateValueToInput = (date?: Date | string) => {
+  if (!date) return ''
+  try {
+    return new Date(date).toISOString().split('T')[0]
+  } catch (error) {
+    return ''
+  }
 }
