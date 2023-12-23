@@ -28,24 +28,22 @@ export const ChangeableList = () => {
   }
 
   return (
-    <div>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="checked-songs" direction="vertical">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {selectedSongs.map((song, index) => (
-                <Draggable
-                  key={song.id}
-                  index={index}
-                  song={song}
-                  removeSong={onRemoveSong}
-                />
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="checked-songs" direction="vertical">
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            {selectedSongs.map((song, index) => (
+              <Draggable
+                key={song.id}
+                index={index}
+                song={song}
+                removeSong={onRemoveSong}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
   )
 }

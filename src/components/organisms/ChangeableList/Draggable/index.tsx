@@ -1,6 +1,6 @@
 import { Menu, Trash2 } from 'lucide-react'
 import { Draggable as LibDraggable } from 'react-beautiful-dnd'
-import { twJoin } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   index: number
@@ -15,12 +15,15 @@ export const Draggable = ({ index, song, removeSong }: Props) => {
         <div
           {...provided.draggableProps}
           ref={provided.innerRef}
-          className={twJoin(
+          className={twMerge(
             'flex items-center gap-3 p-1.5 mb-0.5 rounded-sm border border-zinc-900 bg-zinc-900 transition-colors',
-            snapshot.isDragging ? 'border-yellow-800' : '',
+            snapshot.isDragging ? 'bg-zinc-900/50 backdrop-blur-lg' : '',
           )}
         >
-          <div {...provided.dragHandleProps} className="cursor-grab">
+          <div
+            {...provided.dragHandleProps}
+            className="cursor-grab active:text-zinc-400 transition-colors"
+          >
             <Menu size={18} />
           </div>
 

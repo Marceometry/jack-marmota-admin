@@ -6,7 +6,7 @@ export const minutesToHoursText = (min?: number) => {
   const hours = Math.floor(min / 60)
   const minutes = min % 60
 
-  return `${hours}h${minutes ? `${minutes}min` : ''}`
+  return `${hours}h${minutes ? ` ${minutes}min` : ''}`
 }
 
 export const formatDate = (date: Date | string) => {

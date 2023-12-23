@@ -28,6 +28,7 @@ export function SetlistForm({ setlist, trigger }: Props) {
     if (setlist && isOpen) {
       formMethods.setValue('name', setlist.name)
       formMethods.setValue('date', dateValueToInput(setlist.date))
+      formMethods.setValue('duration', setlist.duration)
     }
   }, [setlist, isOpen])
 
@@ -38,7 +39,7 @@ export function SetlistForm({ setlist, trigger }: Props) {
 
   const handleSubmit = async (data: SetListFormInputs) => {
     const date = dateInputToValue(data.date)
-    const payload = { name: data.name, date }
+    const payload = { ...data, date }
 
     if (setlist) {
       const response = await updateSetList({ ...setlist, ...payload })
@@ -63,8 +64,25 @@ export function SetlistForm({ setlist, trigger }: Props) {
     >
       <Form formMethods={formMethods} onSubmit={handleSubmit}>
         <div className="grid gap-2 mb-8">
-          <Input name="name" label="Nome da setlist" required />
-          <Input name="date" type="date" label="Data" required />
+          <Input<SetListFormInputs>
+            name="name"
+            label="Nome da setlist"
+            required
+          />
+
+          <div className="grid grid-cols-2 gap-2">
+            <Input<SetListFormInputs>
+              name="date"
+              type="date"
+              label="Data"
+              required
+            />
+            <Input<SetListFormInputs>
+              name="duration"
+              type="number"
+              label="Duração (em minutos)"
+            />
+          </div>
         </div>
 
         <div className="flex gap-4">
