@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { useApiCall } from '@/hooks'
 import { useFirebaseDatabase } from '@/lib/firebase'
-import { SetList } from '@/types'
+import { SetList, Song } from '@/types'
 import {
   CreateSetListModel,
   SetListFilters,
@@ -20,6 +20,7 @@ export function SetListsContextProvider({
   const { call, isLoading, setIsLoading } = useApiCall(true)
   const { onChange, onChangeItem, add, remove } =
     useFirebaseDatabase<SetList>('setlists')
+  const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
   const [filters, setFilters] = useState<SetListFilters>({})
   const [setlists, setSetlists] = useState<SetList[]>([])
 
@@ -61,6 +62,8 @@ export function SetListsContextProvider({
         addSetList,
         updateSetList,
         deleteSetList,
+        selectedSongs,
+        setSelectedSongs,
       }}
     >
       {children}

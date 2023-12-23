@@ -15,3 +15,10 @@ export const enumToStringArray = <T extends { [key: string]: any }>(
   const keys = Object.keys(obj)
   return [keys[0], ...keys.slice(1)]
 }
+
+export function reorder(array: any[], startIndex: number, endIndex: number) {
+  const result = Array.from(array)
+  const [removed] = result.splice(startIndex, 1)
+  result.splice(endIndex, 0, removed)
+  return result
+}

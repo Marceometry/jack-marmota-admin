@@ -1,20 +1,15 @@
 import { Table } from '@/components/molecules'
 import { CopyDialog, SongFilterForm } from '@/components/organisms'
-import { songFilter, useSongs } from '@/contexts'
+import { songFilter, useSetLists, useSongs } from '@/contexts'
 import { Song } from '@/types'
 import { getColumns } from './columns'
 
 type Props = {
-  selectedSongs: Song[]
-  setSelectedSongs: (song: Song[]) => void
   isReadonly: boolean
 }
 
-export function SelectableSongsTable({
-  selectedSongs,
-  setSelectedSongs,
-  isReadonly,
-}: Props) {
+export function SelectableSongsTable({ isReadonly }: Props) {
+  const { selectedSongs, setSelectedSongs } = useSetLists()
   const { songs, filters } = useSongs()
 
   const hasFilters = !!Object.keys(filters).length

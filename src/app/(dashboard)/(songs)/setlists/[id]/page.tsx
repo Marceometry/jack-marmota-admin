@@ -5,21 +5,20 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IconButton } from '@/components/atoms'
 import {
+  ChangeableList,
   SelectableSongsTable,
-  SelectedSongsContainer,
   SelectedSongsHeader,
   SetlistForm,
 } from '@/components/organisms'
 import { useSetLists } from '@/contexts'
-import { SetList, Song } from '@/types'
+import { SetList } from '@/types'
 import { formatDate } from '@/utils'
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(true)
   const [isReadonly, setIsReadonly] = useState(true)
   const [setlist, setSetlist] = useState<SetList | null>(null)
-  const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
-  const { onChangeItem } = useSetLists()
+  const { onChangeItem, selectedSongs, setSelectedSongs } = useSetLists()
   const params = useParams()
 
   useEffect(() => {
@@ -71,24 +70,32 @@ export default function Page() {
           )}
         </div>
 
-        <SelectableSongsTable
-          selectedSongs={selectedSongs}
-          setSelectedSongs={setSelectedSongs}
-          isReadonly={isReadonly}
-        />
+        <SelectableSongsTable isReadonly={isReadonly} />
       </div>
 
       {!!setlist && (
         <div className="flex flex-col justify-between gap-6">
           <SelectedSongsHeader
             setlist={setlist}
-            selectedSongs={selectedSongs}
-            setSelectedSongs={setSelectedSongs}
             isReadonly={isReadonly}
             setIsReadonly={setIsReadonly}
           />
 
-          <SelectedSongsContainer songs={selectedSongs} />
+          <div className="flex-1">
+            {!selectedSongs.length ? (
+              <div className="h-full grid place-items-center">
+                <p>Não há músicas selecionadas</p>
+              </div>
+            ) : isReadonly ? (
+              selectedSongs.map((s, i) => (
+                <p key={s.name}>
+                  {i + 1}. {s.name}
+                </p>
+              ))
+            ) : (
+              <ChangeableList />
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { Unsubscribe } from 'firebase/database'
 import { ReactNode } from 'react'
 import { ApiResponse } from '@/hooks'
-import { SetList } from '@/types'
+import { SetList, Song } from '@/types'
 
 export type CreateSetListModel = Omit<SetList, 'id' | 'songs' | 'songsCount'>
 
@@ -16,6 +16,8 @@ export type SetListsContextData = {
   addSetList: (data: CreateSetListModel) => Promise<ApiResponse<string>>
   updateSetList: (data: SetList) => Promise<ApiResponse>
   deleteSetList: (id: string) => Promise<ApiResponse>
+  selectedSongs: Song[]
+  setSelectedSongs: (songs: Song[]) => void
 }
 
 export type SetListsContextProviderProps = {

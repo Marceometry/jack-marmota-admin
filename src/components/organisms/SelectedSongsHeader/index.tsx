@@ -1,26 +1,31 @@
 import { Button } from '@/components/atoms'
-import { CancelEdit, CopyDialog } from '@/components/organisms'
+import { CancelEdit, ClearSongs, CopyDialog } from '@/components/organisms'
 import { useSetLists } from '@/contexts'
 import { useDisclose } from '@/hooks'
-import { SetList, Song } from '@/types'
+import { SetList } from '@/types'
 
 type Props = {
   setlist: SetList
-  selectedSongs: Song[]
-  setSelectedSongs: (value: Song[]) => void
   isReadonly: boolean
   setIsReadonly: (value: boolean) => void
 }
 
 export function SelectedSongsHeader({
   setlist,
-  selectedSongs,
-  setSelectedSongs,
   isReadonly,
   setIsReadonly,
 }: Props) {
-  const { isOpen, onClose, onOpenChange } = useDisclose()
-  const { updateSetList } = useSetLists()
+  const {
+    isOpen: isOpenCancelDialog,
+    onClose: onCloseCancelDialog,
+    onOpenChange: onOpenChangeCancelDialog,
+  } = useDisclose()
+  const {
+    isOpen: isOpenClearDialog,
+    onClose: onCloseClearDialog,
+    onOpenChange: onOpenChangeClearDialog,
+  } = useDisclose()
+  const { updateSetList, selectedSongs, setSelectedSongs } = useSetLists()
 
   const handleUpdateSetlist = () => {
     updateSetList({
@@ -38,17 +43,31 @@ export function SelectedSongsHeader({
   const handleCancel = () => {
     setIsReadonly(true)
     setSelectedSongs(setlist?.songs || [])
-    onClose()
+    onCloseCancelDialog()
+  }
+
+  const handleClear = () => {
+    setSelectedSongs([])
+    onCloseClearDialog()
   }
 
   return (
     <div className="flex justify-between gap-4">
-      <CopyDialog list={selectedSongs} />
+      <div className="flex gap-2">
+        {!isReadonly && (
+          <ClearSongs
+            isOpen={isOpenClearDialog}
+            onOpenChange={onOpenChangeClearDialog}
+            onConfirm={handleClear}
+          />
+        )}
+        <CopyDialog list={selectedSongs} />
+      </div>
 
       <div className="flex gap-4">
         <CancelEdit
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
+          isOpen={isOpenCancelDialog}
+          onOpenChange={onOpenChangeCancelDialog}
           onConfirm={handleCancel}
           trigger={
             !isReadonly ? (
