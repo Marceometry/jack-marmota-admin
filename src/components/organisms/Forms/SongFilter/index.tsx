@@ -16,7 +16,7 @@ import {
 
 export function SongFilterForm() {
   const { filters, setFilters } = useSongs()
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const formMethods = useForm<SongFilterInputs>({
     resolver: songFilterResolver,
     defaultValues: { ...songFilterDefaultValues, ...filters },
@@ -36,7 +36,7 @@ export function SongFilterForm() {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       title="Filtrar músicas"
       trigger={
         <IconButton aria-label="Filtrar músicas" icon={<Filter size={16} />} />

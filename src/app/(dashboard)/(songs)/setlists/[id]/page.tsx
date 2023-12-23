@@ -4,12 +4,19 @@ import { Edit2 } from 'lucide-react'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IconButton } from '@/components/atoms'
-import { SelectableSongsTable, SetlistForm } from '@/components/organisms'
+import {
+  SelectableSongsTable,
+  SelectedSongsContainer,
+  SelectedSongsHeader,
+  SetlistForm,
+} from '@/components/organisms'
 import { useSetLists } from '@/contexts'
 import { SetList, Song } from '@/types'
 import { formatDate } from '@/utils'
 
 export default function Page() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [isReadonly, setIsReadonly] = useState(true)
   const [setlist, setSetlist] = useState<SetList | null>(null)
   const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
   const { onChangeItem } = useSetLists()
@@ -19,19 +26,24 @@ export default function Page() {
     const id = String(params.id)
     if (!id) return
 
-    const unsubscribe = onChangeItem(id, (data) => setSetlist(data))
+    setIsLoading(true)
+    const unsubscribe = onChangeItem(id, (data) => {
+      setSetlist(data)
+      setSelectedSongs(data?.songs || [])
+      setIsLoading(false)
+    })
+
     return () => {
       unsubscribe()
     }
   }, [])
 
-  const handleChangeSong = (song: Song) => {
-    const index = selectedSongs.findIndex((s) => s.id === song.id)
-    const value =
-      index < 0
-        ? [...selectedSongs, song]
-        : [...selectedSongs.slice(0, index), ...selectedSongs.slice(index + 1)]
-    setSelectedSongs(value)
+  if (!isLoading && !setlist) {
+    return (
+      <div className="h-full grid place-items-center">
+        <p>Setlist não encontrada.</p>
+      </div>
+    )
   }
 
   const title = setlist
@@ -61,25 +73,24 @@ export default function Page() {
 
         <SelectableSongsTable
           selectedSongs={selectedSongs}
-          onChangeSong={handleChangeSong}
+          setSelectedSongs={setSelectedSongs}
+          isReadonly={isReadonly}
         />
       </div>
 
-      <div className="flex flex-col justify-between gap-4">
-        <div className="flex-1">
-          {!selectedSongs.length ? (
-            <div className="h-full grid place-items-center">
-              <p>Não há músicas selecionadas</p>
-            </div>
-          ) : (
-            selectedSongs.map((s, i) => (
-              <p key={s.name}>
-                {i + 1}. {s.name}
-              </p>
-            ))
-          )}
+      {!!setlist && (
+        <div className="flex flex-col justify-between gap-6">
+          <SelectedSongsHeader
+            setlist={setlist}
+            selectedSongs={selectedSongs}
+            setSelectedSongs={setSelectedSongs}
+            isReadonly={isReadonly}
+            setIsReadonly={setIsReadonly}
+          />
+
+          <SelectedSongsContainer songs={selectedSongs} />
         </div>
-      </div>
+      )}
     </div>
   )
 }

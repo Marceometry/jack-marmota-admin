@@ -2,7 +2,6 @@
 
 import { Table } from '@/components/molecules'
 import { CopyDialog, SongFilterForm, SongForm } from '@/components/organisms'
-import { SONG_COPY_TEMPLATES } from '@/constants'
 import { songFilter, useSongs } from '@/contexts'
 import { columns } from './columns'
 
@@ -16,7 +15,7 @@ export default function Page() {
 
   const tableHeader = (
     <>
-      <CopyDialog list={filteredSongs} templates={SONG_COPY_TEMPLATES} />
+      <CopyDialog list={filteredSongs} />
       <SongFilterForm />
       <SongForm />
     </>

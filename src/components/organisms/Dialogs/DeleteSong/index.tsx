@@ -12,7 +12,7 @@ type Props = {
 }
 
 export function DeleteSongDialog({ song }: Props) {
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const { deleteSong } = useSongs()
 
   const handleDeleteSong = () => {
@@ -26,7 +26,7 @@ export function DeleteSongDialog({ song }: Props) {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       trigger={trigger}
       behaviour="dialog"
       title={`Excluir "${song.name}"?`}

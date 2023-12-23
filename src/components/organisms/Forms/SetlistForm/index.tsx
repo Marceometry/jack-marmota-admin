@@ -18,7 +18,7 @@ type Props = {
 
 export function SetlistForm({ setlist, trigger }: Props) {
   const router = useRouter()
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const { addSetList, updateSetList } = useSetLists()
   const formMethods = useForm<SetListFormInputs>({
     resolver: setlistFormResolver,
@@ -56,7 +56,7 @@ export function SetlistForm({ setlist, trigger }: Props) {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       trigger={trigger || <Button>Adicionar setlist</Button>}
       title={setlist ? 'Editar setlist' : 'Nova setlist'}
       behaviour={setlist ? 'dialog' : 'drawer'}

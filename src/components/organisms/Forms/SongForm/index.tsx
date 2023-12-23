@@ -21,7 +21,7 @@ type Props = {
 
 export function SongForm({ song, trigger }: Props) {
   const { addSong, updateSong } = useSongs()
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const formMethods = useForm<SongFormInputs>({ resolver: songFormResolver })
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function SongForm({ song, trigger }: Props) {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       trigger={trigger || <Button>Adicionar música</Button>}
       title={song ? 'Editar música' : 'Adicionar música'}
     >

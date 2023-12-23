@@ -4,18 +4,19 @@ import { Copy } from 'lucide-react'
 import { useState } from 'react'
 import { Button, IconButton } from '@/components/atoms'
 import { Modal } from '@/components/molecules'
+import { SONG_COPY_TEMPLATES } from '@/constants'
 import { useClipboard, useDisclose } from '@/hooks'
 
 type Props = {
   list: object[]
-  templates: string[]
+  templates?: string[]
 }
 
 const datalistId = 'template-list'
 
-export function CopyDialog({ list, templates }: Props) {
+export function CopyDialog({ list, templates = SONG_COPY_TEMPLATES }: Props) {
   const [template, setTemplate] = useState(templates[0])
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const copy = useClipboard(template)
 
   const handleCopy = () => {
@@ -26,7 +27,7 @@ export function CopyDialog({ list, templates }: Props) {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       title="Copiar lista"
       description="Você pode customizar o template abaixo para alterar o formato do texto final"
       behaviour="dialog"

@@ -2,7 +2,10 @@ import { Checkbox } from '@/components/atoms'
 import { TableColumn } from '@/components/molecules'
 import { Song } from '@/types'
 
-export const getColumns = (selectedSongs: Song[]): TableColumn<Song>[] => [
+export const getColumns = (
+  selectedSongs: Song[],
+  isReadonly: boolean,
+): TableColumn<Song>[] => [
   { label: 'Nome', key: 'name' },
   { label: 'Artista', key: 'artist' },
   {
@@ -14,7 +17,10 @@ export const getColumns = (selectedSongs: Song[]): TableColumn<Song>[] => [
     label: 'Marcado',
     render: ({ id }) => (
       <div className="flex justify-center">
-        <Checkbox checked={!!selectedSongs.find((s) => s.id === id)} />
+        <Checkbox
+          checked={!!selectedSongs.find((s) => s.id === id)}
+          disabled={isReadonly}
+        />
       </div>
     ),
   },

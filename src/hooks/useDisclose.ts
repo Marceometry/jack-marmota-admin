@@ -13,6 +13,7 @@ export type UseDiscloseReturn = {
   onOpen: () => void
   onClose: () => void
   onToggle: () => void
+  onOpenChange: (value: boolean) => void
 }
 
 export function useDisclose(props?: Props): UseDiscloseReturn {
@@ -32,10 +33,15 @@ export function useDisclose(props?: Props): UseDiscloseReturn {
     setIsOpen((o) => !o)
   }
 
+  const onOpenChange = (value: boolean) => {
+    setIsOpen(value)
+  }
+
   return {
     isOpen,
     onOpen,
     onClose,
     onToggle,
+    onOpenChange,
   }
 }

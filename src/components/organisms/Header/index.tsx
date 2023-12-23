@@ -4,7 +4,7 @@ import { ROUTES } from '@/routes'
 
 export function Header() {
   return (
-    <header className="w-full py-2 px-5 border-b border-zinc-800 bg-zinc-900">
+    <header className="w-full py-2 px-5 border-b border-zinc-800 bg-zinc-950">
       <div className="w-fit">
         <Link
           href={ROUTES.HOME}

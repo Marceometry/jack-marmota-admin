@@ -7,7 +7,7 @@ import { useDisclose } from '@/hooks'
 import { NewEquipmentFormInputs, newEquipmentFormResolver } from './validation'
 
 export function NewEquipmentForm() {
-  const { isOpen, onClose, onToggle } = useDisclose()
+  const { isOpen, onClose, onOpenChange } = useDisclose()
   const formMethods = useForm<NewEquipmentFormInputs>({
     resolver: newEquipmentFormResolver,
   })
@@ -22,7 +22,7 @@ export function NewEquipmentForm() {
   return (
     <Modal
       open={isOpen}
-      onOpenChange={onToggle}
+      onOpenChange={onOpenChange}
       trigger={<Button>Adicionar equipamento</Button>}
       title="Adicionar novo equipamento"
     >
