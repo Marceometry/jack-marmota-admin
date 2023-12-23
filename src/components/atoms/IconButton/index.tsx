@@ -21,7 +21,7 @@ export const IconButton = forwardRef(
         className={twMerge(
           'rounded-md transition-all',
           variant === 'fill'
-            ? 'p-2.5 border border-zinc-800 bg-zinc-800 hover:bg-zinc-700'
+            ? 'p-2.5 border border-zinc-800 bg-zinc-800 hover:bg-zinc-700 hover:border-zinc-700'
             : 'hover:brightness-75',
           square ? 'aspect-square' : '',
           className,

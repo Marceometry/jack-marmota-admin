@@ -14,6 +14,7 @@ export type TableColumn<T extends Item> = {
   label: string
   key?: keyof T
   render?: (item: T) => React.ReactNode
+  stopPropagation?: boolean
 }
 
 type Props<T extends Item> = {
@@ -121,6 +122,11 @@ export function Table<T extends Item>({
                     <td
                       key={column.label}
                       className="py-2 px-4 text-left border-b border-b-zinc-800"
+                      onClick={
+                        column.stopPropagation
+                          ? (e) => e.stopPropagation()
+                          : undefined
+                      }
                     >
                       {(column.render
                         ? column.render?.(item)

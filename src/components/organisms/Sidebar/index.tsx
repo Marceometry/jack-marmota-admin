@@ -48,7 +48,7 @@ export function Sidebar() {
                   <Icon className="shrink-0" size={20} />
                   <span
                     className={twJoin(
-                      'transition-opacity whitespace-nowrap',
+                      'transition-all whitespace-nowrap',
                       isOpen
                         ? 'duration-500'
                         : 'duration-200 opacity-0 invisible',

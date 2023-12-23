@@ -28,7 +28,7 @@ export function SetlistForm({ setlist, trigger }: Props) {
     if (setlist && isOpen) {
       formMethods.setValue('name', setlist.name)
       formMethods.setValue('date', dateValueToInput(setlist.date))
-      formMethods.setValue('duration', setlist.duration)
+      formMethods.setValue('duration', String(setlist.duration))
     }
   }, [setlist, isOpen])
 
@@ -39,7 +39,8 @@ export function SetlistForm({ setlist, trigger }: Props) {
 
   const handleSubmit = async (data: SetListFormInputs) => {
     const date = dateInputToValue(data.date)
-    const payload = { ...data, date }
+    const duration = data.duration ? Number(data.duration) : undefined
+    const payload = { ...data, duration, date }
 
     if (setlist) {
       const response = await updateSetList({ ...setlist, ...payload })

@@ -4,14 +4,13 @@ import { TableColumn } from '@/components/molecules'
 import { DeleteSongDialog, SongForm } from '@/components/organisms'
 import { Song } from '@/types'
 
+const editTrigger = (
+  <IconButton aria-label="Editar música" icon={<Edit size={16} />} />
+)
+
 const songActions = (item: Song) => (
   <div className="flex gap-3 w-fit">
-    <SongForm
-      song={item}
-      trigger={
-        <IconButton aria-label="Editar música" icon={<Edit size={16} />} />
-      }
-    />
+    <SongForm song={item} trigger={editTrigger} />
     <DeleteSongDialog song={item} />
   </div>
 )
