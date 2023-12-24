@@ -1,4 +1,5 @@
 import { RadioOption } from '@/components/atoms'
+import { templateReplace } from '.'
 
 export const enumToRadioOption = <T extends object>(
   obj: T,
@@ -21,4 +22,10 @@ export function reorder(array: any[], startIndex: number, endIndex: number) {
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
   return result
+}
+
+export const stringifyList = (list: object[], template: string) => {
+  return list
+    .map((item, index) => templateReplace(item, index, template))
+    .join('\n')
 }

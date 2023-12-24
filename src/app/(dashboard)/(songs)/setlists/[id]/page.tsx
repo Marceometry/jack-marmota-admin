@@ -50,7 +50,7 @@ export default function Page() {
     : 'Carregando...'
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid xl:grid-cols-2 gap-8">
       <div>
         <div className="flex gap-2 mb-6">
           <h2 className="text-xl font-bold">{title}</h2>

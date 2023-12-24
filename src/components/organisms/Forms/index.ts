@@ -1,4 +1,5 @@
 export * from './NewEquipmentForm'
+export * from './PrintSetlistForm'
 export * from './SetlistForm'
 export * from './SongFilter'
 export * from './SongForm'

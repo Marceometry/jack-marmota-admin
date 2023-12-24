@@ -1,5 +1,6 @@
 export * from './Button'
 export * from './Checkbox'
+export * from './ControlledInput'
 export * from './IconButton'
 export * from './Input'
 export * from './Link'

@@ -1,18 +1,5 @@
 import { useToast } from '@/hooks'
-
-const templateReplace = (item: object, index: number, template: string) => {
-  return Object.entries(item)
-    .reduce((acc, [key, value]) => {
-      return acc.replaceAll(`{${key}}`, value)
-    }, template)
-    .replaceAll('{index}', String(index + 1))
-}
-
-const stringifyList = (list: object[], template: string) => {
-  return list
-    .map((item, index) => templateReplace(item, index, template))
-    .join('\n')
-}
+import { stringifyList } from '@/utils'
 
 export const useClipboard = (template: string) => {
   const toast = useToast()

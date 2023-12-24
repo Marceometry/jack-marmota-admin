@@ -1,5 +1,10 @@
 import { Button } from '@/components/atoms'
-import { CancelEdit, ClearSongs, CopyDialog } from '@/components/organisms'
+import {
+  CancelEdit,
+  ClearSongs,
+  CopyDialog,
+  PrintSetlistForm,
+} from '@/components/organisms'
 import { useSetLists } from '@/contexts'
 import { useDisclose } from '@/hooks'
 import { SetList } from '@/types'
@@ -61,6 +66,7 @@ export function SelectedSongsHeader({
             onConfirm={handleClear}
           />
         )}
+        <PrintSetlistForm songs={selectedSongs} />
         <CopyDialog list={selectedSongs} />
       </div>
 
