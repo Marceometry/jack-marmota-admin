@@ -1,5 +1,4 @@
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database'
-import { firebaseApp } from './config'
 
 type FirebaseDatabasePath = 'songs' | 'setlists'
 
@@ -18,7 +17,7 @@ export function snapshotToList<T extends Item>(
 export const useFirebaseDatabase = <T extends Item>(
   path: FirebaseDatabasePath,
 ) => {
-  const database = getDatabase(firebaseApp)
+  const database = getDatabase()
 
   const onChange = (callback: (data: T[]) => void) => {
     return onValue(ref(database, path), (data) =>

@@ -1,6 +1,21 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { Header, PageTitle, Sidebar } from '@/components/organisms'
+import { useAuth } from '@/contexts'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { user, isLoading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (isLoading) return
+    if (!user) router.replace('/login')
+  }, [isLoading, user])
+
+  if (isLoading || !user) return null
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -9,7 +24,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Sidebar />
 
         <main className="flex-1 py-6 px-8">
-          <PageTitle />
+          <div className="flex justify-between">
+            <PageTitle />
+          </div>
 
           {children}
         </main>
