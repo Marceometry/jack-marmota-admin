@@ -1,4 +1,4 @@
-import { Menu, Trash2 } from 'lucide-react'
+import { GripVertical, Trash2 } from 'lucide-react'
 import { Draggable as LibDraggable } from 'react-beautiful-dnd'
 import { twMerge } from 'tailwind-merge'
 
@@ -24,7 +24,7 @@ export const Draggable = ({ index, song, removeSong }: Props) => {
             {...provided.dragHandleProps}
             className="cursor-grab active:text-zinc-400 transition-colors"
           >
-            <Menu size={18} />
+            <GripVertical size={18} />
           </div>
 
           <div className="flex-1 flex items-center justify-between">
