@@ -114,7 +114,7 @@ export function Table<T extends Item>({
                   onClick={() => onRowClick?.(item)}
                   className={
                     onRowClick
-                      ? 'cursor-pointer transition-colors hover:bg-zinc-700 active:bg-zinc-800'
+                      ? 'table-row-hover cursor-pointer transition-colors duration-300 hover:bg-zinc-700 active:bg-zinc-800'
                       : ''
                   }
                 >

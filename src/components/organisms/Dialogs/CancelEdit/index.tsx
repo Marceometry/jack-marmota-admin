@@ -27,7 +27,7 @@ export function CancelEdit({
         <Button fullWidth variant="outline" onClick={() => onOpenChange(false)}>
           Continuar editando
         </Button>
-        <Button fullWidth onClick={onConfirm}>
+        <Button fullWidth variant="danger" onClick={onConfirm}>
           Cancelar edição
         </Button>
       </div>

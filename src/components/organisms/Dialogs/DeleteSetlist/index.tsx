@@ -40,7 +40,9 @@ export function DeleteSetlistDialog({ setlist }: Props) {
         <Button variant="outline" onClick={onClose}>
           Cancelar
         </Button>
-        <Button onClick={handleDeleteSetlist}>Excluir</Button>
+        <Button variant="danger" onClick={handleDeleteSetlist}>
+          Excluir
+        </Button>
       </div>
     </Modal>
   )

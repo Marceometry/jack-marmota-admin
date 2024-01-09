@@ -36,7 +36,9 @@ export function DeleteSongDialog({ song }: Props) {
         <Button variant="outline" onClick={onClose}>
           Cancelar
         </Button>
-        <Button onClick={handleDeleteSong}>Excluir</Button>
+        <Button variant="danger" onClick={handleDeleteSong}>
+          Excluir
+        </Button>
       </div>
     </Modal>
   )

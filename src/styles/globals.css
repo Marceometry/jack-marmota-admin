@@ -20,6 +20,10 @@ body {
   @apply scrollbar-thin scrollbar-corner-zinc-800 scrollbar-track-zinc-800 scrollbar-thumb-zinc-700 active:scrollbar-thumb-zinc-600;
 }
 
+.table-row-hover:has(button:hover) {
+  @apply bg-zinc-900;
+}
+
 [list]::-webkit-calendar-picker-indicator,
 *::-webkit-list-button {
   display: none !important;

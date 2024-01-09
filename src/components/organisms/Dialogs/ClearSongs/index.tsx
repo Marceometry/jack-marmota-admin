@@ -27,7 +27,7 @@ export function ClearSongs({ isOpen, onOpenChange, onConfirm }: Props) {
         <Button fullWidth variant="outline" onClick={() => onOpenChange(false)}>
           Cancelar
         </Button>
-        <Button fullWidth onClick={onConfirm}>
+        <Button fullWidth variant="danger" onClick={onConfirm}>
           Confirmar
         </Button>
       </div>

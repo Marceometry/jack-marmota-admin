@@ -28,7 +28,9 @@ export function LogoutDialog() {
         <Button variant="outline" onClick={onClose}>
           Cancelar
         </Button>
-        <Button onClick={signOut}>Confirmar</Button>
+        <Button variant="danger" onClick={signOut}>
+          Confirmar
+        </Button>
       </div>
     </Modal>
   )

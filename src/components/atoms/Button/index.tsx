@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<
   HTMLButtonElement
 > & {
   children: React.ReactNode
-  variant?: 'fill' | 'outline'
+  variant?: 'fill' | 'outline' | 'danger'
   fullWidth?: boolean
 }
 
@@ -28,9 +28,10 @@ export const Button = forwardRef(
         type={type}
         className={twMerge(
           'py-2 px-6 text-sm rounded-md transition-all hover:bg-zinc-700',
-          variant === 'fill'
-            ? 'border border-zinc-800 bg-zinc-800'
-            : 'border border-zinc-700',
+          variant === 'outline'
+            ? 'border border-zinc-700'
+            : 'border border-zinc-800 bg-zinc-800 hover:border-zinc-700',
+          variant === 'danger' ? 'hover:bg-red-800 hover:border-red-800' : '',
           fullWidth ? 'w-full' : '',
           className,
         )}
