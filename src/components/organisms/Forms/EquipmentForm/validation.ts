@@ -1,8 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
-export const newEquipmentFormSchema = z.object({
+export const equipmentFormSchema = z.object({
   name: z.string().trim().min(1, 'Este campo é obrigatório'),
+  category: z.string().trim().min(1, 'Este campo é obrigatório'),
   quantity: z
     .string()
     .min(1, 'Este campo é obrigatório')
@@ -12,6 +13,6 @@ export const newEquipmentFormSchema = z.object({
     }),
 })
 
-export const newEquipmentFormResolver = zodResolver(newEquipmentFormSchema)
+export const equipmentFormResolver = zodResolver(equipmentFormSchema)
 
-export type NewEquipmentFormInputs = z.infer<typeof newEquipmentFormSchema>
+export type EquipmentFormInputs = z.infer<typeof equipmentFormSchema>

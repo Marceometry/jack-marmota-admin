@@ -7,7 +7,6 @@ import { useFirebaseDatabase } from '@/lib/firebase'
 import { SetList, Song } from '@/types'
 import {
   CreateSetListModel,
-  SetListFilters,
   SetListsContextData,
   SetListsContextProviderProps,
 } from './types'
@@ -21,7 +20,6 @@ export function SetListsContextProvider({
   const { onChange, onChangeItem, add, remove } =
     useFirebaseDatabase<SetList>('setlists')
   const [selectedSongs, setSelectedSongs] = useState<Song[]>([])
-  const [filters, setFilters] = useState<SetListFilters>({})
   const [setlists, setSetlists] = useState<SetList[]>([])
 
   const addSetList = call(
@@ -33,13 +31,9 @@ export function SetListsContextProvider({
     { toastText: 'Adicionada com sucesso!' },
   )
 
-  const updateSetList = call((data: SetList) => add(data), {
-    toastText: 'Atualizada com sucesso!',
-  })
+  const updateSetList = call(add, { toastText: 'Atualizada com sucesso!' })
 
-  const deleteSetList = call((id: string) => remove(id), {
-    toastText: 'Excluída com sucesso!',
-  })
+  const deleteSetList = call(remove, { toastText: 'Excluída com sucesso!' })
 
   useEffect(() => {
     const unsubscribe = onChange((data) => {
@@ -56,8 +50,6 @@ export function SetListsContextProvider({
       value={{
         isLoading,
         setlists,
-        filters,
-        setFilters,
         onChangeItem,
         addSetList,
         updateSetList,

@@ -5,13 +5,9 @@ import { SetList, Song } from '@/types'
 
 export type CreateSetListModel = Omit<SetList, 'id' | 'songs' | 'songsCount'>
 
-export type SetListFilters = {}
-
 export type SetListsContextData = {
   isLoading: boolean
   setlists: SetList[]
-  filters: SetListFilters
-  setFilters: (data: SetListFilters) => void
   onChangeItem: (id: string, cb: (data: SetList) => void) => Unsubscribe
   addSetList: (data: CreateSetListModel) => Promise<ApiResponse<string>>
   updateSetList: (data: SetList) => Promise<ApiResponse>

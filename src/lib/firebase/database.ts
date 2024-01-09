@@ -1,6 +1,6 @@
 import { getDatabase, onValue, ref, remove, set } from 'firebase/database'
 
-type FirebaseDatabasePath = 'songs' | 'setlists'
+type FirebaseDatabasePath = 'songs' | 'setlists' | 'equipments'
 
 type Item = { id: string }
 

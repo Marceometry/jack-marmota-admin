@@ -8,8 +8,8 @@ const editTrigger = (
   <IconButton aria-label="Editar música" icon={<Edit size={16} />} />
 )
 
-const songActions = (item: Song) => (
-  <div className="flex gap-3 w-fit">
+const actions = (item: Song) => (
+  <div className="flex gap-4 w-fit">
     <SongForm song={item} trigger={editTrigger} />
     <DeleteSongDialog song={item} />
   </div>
@@ -20,5 +20,5 @@ export const columns: TableColumn<Song>[] = [
   { label: 'Artista', key: 'artist' },
   { label: 'Início', key: 'start' },
   { label: 'Fim', key: 'end' },
-  { label: 'Ações', render: songActions },
+  { label: 'Ações', render: actions },
 ]

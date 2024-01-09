@@ -13,8 +13,8 @@ const editTrigger = (
   />
 )
 
-const setlistActions = (item: SetList) => (
-  <div className="flex gap-3 w-fit">
+const actions = (item: SetList) => (
+  <div className="flex gap-4 w-fit">
     <SetlistForm setlist={item} trigger={editTrigger} />
     <DeleteSetlistDialog setlist={item} />
   </div>
@@ -37,5 +37,5 @@ export const columns: TableColumn<SetList>[] = [
     key: 'duration',
     render: ({ duration }) => minutesToHoursText(duration),
   },
-  { label: 'Ações', render: setlistActions, stopPropagation: true },
+  { label: 'Ações', render: actions, stopPropagation: true },
 ]

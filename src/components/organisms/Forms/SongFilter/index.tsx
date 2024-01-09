@@ -47,7 +47,7 @@ export function SongFilterForm() {
           <RadioGroup<SongFilterInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFilterInputs> name="status" options={statusOptions} />
 
-          <div className="grid grid-cols-2 gap-3 mt-4">
+          <div className="grid grid-cols-2 gap-4 mt-4">
             <Button variant="outline" onClick={handleClear}>
               Limpar
             </Button>

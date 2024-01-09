@@ -1,5 +1,6 @@
 'use client'
 
+import { Loader } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Header, PageTitle, Sidebar } from '@/components/organisms'
@@ -14,7 +15,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     if (!user) router.replace('/login')
   }, [isLoading, user])
 
-  if (isLoading || !user) return null
+  if (isLoading || !user) {
+    return (
+      <div className="h-screen grid place-items-center">
+        <Loader className="animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

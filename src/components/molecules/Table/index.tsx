@@ -57,14 +57,14 @@ export function Table<T extends Item>({
     <div>
       <div
         className={twJoin(
-          'mb-3 gap-3 w-full flex',
+          'mb-3 gap-4 w-full flex',
           justifyHeader === 'end' ? 'justify-end' : 'justify-start',
         )}
       >
         <SearchInput clearable onChange={setSearchText} />
 
         {tableHeader && (
-          <div className="flex items-center gap-3">{tableHeader}</div>
+          <div className="flex items-center gap-4">{tableHeader}</div>
         )}
       </div>
 

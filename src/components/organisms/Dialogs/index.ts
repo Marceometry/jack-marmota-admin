@@ -1,6 +1,7 @@
 export * from './CancelEdit'
 export * from './ClearSongs'
 export * from './Copy'
+export * from './DeleteEquipment'
 export * from './DeleteSetlist'
 export * from './DeleteSong'
 export * from './Logout'

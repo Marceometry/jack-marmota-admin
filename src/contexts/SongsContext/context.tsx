@@ -25,13 +25,9 @@ export function SongsContextProvider({ children }: SongsContextProviderProps) {
     { toastText: 'Adicionada com sucesso!' },
   )
 
-  const updateSong = call((data: Song) => add(data), {
-    toastText: 'Atualizada com sucesso!',
-  })
+  const updateSong = call(add, { toastText: 'Atualizada com sucesso!' })
 
-  const deleteSong = call((id: string) => remove(id), {
-    toastText: 'Excluída com sucesso!',
-  })
+  const deleteSong = call(remove, { toastText: 'Excluída com sucesso!' })
 
   useEffect(() => {
     const unsubscribe = onChange((data) => {

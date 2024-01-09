@@ -19,7 +19,7 @@ export type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextData)
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-  const { call, isLoading, setIsLoading } = useApiCall()
+  const { call, isLoading, setIsLoading } = useApiCall(true)
   const { firebaseSignIn, firebaseSignOut, onAuthChange } = useFirebaseAuth()
   const [user, setUser] = useState<User | null>(null)
 

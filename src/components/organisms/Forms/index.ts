@@ -1,4 +1,4 @@
-export * from './NewEquipmentForm'
+export * from './EquipmentForm'
 export * from './PrintSetlistForm'
 export * from './SetlistForm'
 export * from './SongFilter'
