@@ -1,12 +1,5 @@
-import { GoogleUser } from './types'
+import { ResponseUser } from './types'
 
-export const formatUser = (user: GoogleUser) => {
-  return user
-    ? {
-        id: user.uid,
-        email: user.email,
-        name: user.displayName,
-        photoUrl: user.photoURL,
-      }
-    : null
+export const formatUser = (user: ResponseUser) => {
+  return user ? { id: user.uid, email: user.email } : null
 }

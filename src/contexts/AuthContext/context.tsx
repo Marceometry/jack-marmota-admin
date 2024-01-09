@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { useApiCall } from '@/hooks'
 import { useFirebaseAuth } from '@/lib/firebase'
-import { AuthContextData, User } from './types'
+import { AuthContextData, ResponseUser, User } from './types'
 import { formatUser } from './utils'
 
 export type AuthContextProviderProps = {
@@ -27,7 +27,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const signOut = call(firebaseSignOut, { toastText: 'Desconectado!' })
 
-  const handleAuthChange = (currentUser: User) => {
+  const handleAuthChange = (currentUser: ResponseUser) => {
     setUser(formatUser(currentUser))
     setIsLoading(false)
   }

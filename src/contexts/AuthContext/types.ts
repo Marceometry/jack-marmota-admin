@@ -1,8 +1,11 @@
+export type ResponseUser = {
+  uid: string
+  email: string
+}
+
 export type User = {
   id: string
-  name: string
   email: string
-  photoUrl: string
 }
 
 export type AuthContextData = {
