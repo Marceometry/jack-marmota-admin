@@ -1,12 +1,13 @@
 import { ReactNode } from 'react'
 import { RadioValue } from '@/components/atoms'
-import { Song, SongRegion, SongStatus } from '@/types'
+import { Song, SongCheck, SongRegion, SongStatus } from '@/types'
 
 export type CreateSongModel = Omit<Song, 'id'>
 
 export type SongFilters = {
   region?: RadioValue<SongRegion>
   status?: RadioValue<SongStatus>
+  checked?: RadioValue<SongCheck>
 }
 
 export type SongsContextData = {

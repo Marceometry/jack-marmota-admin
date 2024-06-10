@@ -14,7 +14,7 @@ export function SelectableSongsTable({ isReadonly }: Props) {
 
   const hasFilters = !!Object.keys(filters).length
   const filteredSongs = hasFilters
-    ? songs.filter((song) => songFilter(song, filters))
+    ? songs.filter((song) => songFilter(song, filters, selectedSongs))
     : songs
 
   const handleChangeSong = (song: Song) => {
@@ -29,7 +29,7 @@ export function SelectableSongsTable({ isReadonly }: Props) {
   const tableHeader = (
     <>
       <CopyDialog list={filteredSongs} />
-      <SongFilterForm />
+      <SongFilterForm showCheckedFilter />
     </>
   )
 

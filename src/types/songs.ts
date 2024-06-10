@@ -10,6 +10,12 @@ export enum SongStatusLabel {
 }
 export type SongStatus = keyof typeof SongStatusLabel
 
+export enum SongCheckLabel {
+  'CHECKED' = 'Selecionada',
+  'UNCHECKED' = 'Não selecionada',
+}
+export type SongCheck = keyof typeof SongCheckLabel
+
 export type Song = {
   id: string
   name: string

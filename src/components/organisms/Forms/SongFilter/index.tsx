@@ -7,6 +7,7 @@ import { Form, Modal } from '@/components/molecules'
 import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
 import {
+  checkStatusOptions,
   regionOptions,
   songFilterDefaultValues,
   SongFilterInputs,
@@ -14,7 +15,11 @@ import {
   statusOptions,
 } from './validation'
 
-export function SongFilterForm() {
+type Props = {
+  showCheckedFilter?: boolean
+}
+
+export function SongFilterForm({ showCheckedFilter }: Props) {
   const { filters, setFilters } = useSongs()
   const { isOpen, onClose, onOpenChange } = useDisclose()
   const formMethods = useForm<SongFilterInputs>({
@@ -46,6 +51,12 @@ export function SongFilterForm() {
         <div className="grid gap-4">
           <RadioGroup<SongFilterInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFilterInputs> name="status" options={statusOptions} />
+          {showCheckedFilter && (
+            <RadioGroup<SongFilterInputs>
+              name="checked"
+              options={checkStatusOptions}
+            />
+          )}
 
           <div className="grid grid-cols-2 gap-4 mt-4">
             <Button variant="outline" onClick={handleClear}>
