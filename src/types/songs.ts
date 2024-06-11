@@ -24,4 +24,5 @@ export type Song = {
   status: SongStatus
   end: string
   start: string
+  lyrics?: string
 }

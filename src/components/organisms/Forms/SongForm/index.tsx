@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button, Input, RadioGroup } from '@/components/atoms'
+import { Button, Input, RadioGroup, Textarea } from '@/components/atoms'
 import { Form, Modal } from '@/components/molecules'
 import { useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
@@ -32,6 +32,7 @@ export function SongForm({ song, trigger }: Props) {
       formMethods.setValue('status', song.status)
       formMethods.setValue('end', song.end)
       formMethods.setValue('start', song.start)
+      formMethods.setValue('lyrics', song.lyrics || '')
     }
   }, [song, isOpen])
 
@@ -65,6 +66,13 @@ export function SongForm({ song, trigger }: Props) {
             <Input<SongFormInputs> name="start" label="Início" />
             <Input<SongFormInputs> name="end" label="Fim" />
           </div>
+
+          <Textarea<SongFormInputs>
+            name="lyrics"
+            label="Letra"
+            placeholder="Letra completa"
+            rows={8}
+          />
 
           <RadioGroup<SongFormInputs> name="region" options={regionOptions} />
           <RadioGroup<SongFormInputs> name="status" options={statusOptions} />

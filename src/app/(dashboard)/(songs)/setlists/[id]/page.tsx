@@ -1,6 +1,7 @@
 'use client'
 
 import { Edit2 } from 'lucide-react'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { IconButton } from '@/components/atoms'
@@ -89,7 +90,9 @@ export default function Page() {
             ) : isReadonly ? (
               selectedSongs.map((s, i) => (
                 <p key={s.name}>
-                  {i + 1}. {s.name}
+                  <Link href={`/setlists/${setlist.id}/playlist?index=${i}`}>
+                    {i + 1}. {s.name}
+                  </Link>
                 </p>
               ))
             ) : (

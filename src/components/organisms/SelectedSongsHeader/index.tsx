@@ -5,9 +5,9 @@ import {
   CopyDialog,
   PrintSetlistForm,
 } from '@/components/organisms'
-import { useSetLists } from '@/contexts'
+import { useSetLists, useSongs } from '@/contexts'
 import { useDisclose } from '@/hooks'
-import { SetList } from '@/types'
+import { SetList, Song } from '@/types'
 
 type Props = {
   setlist: SetList
@@ -31,11 +31,14 @@ export function SelectedSongsHeader({
     onOpenChange: onOpenChangeClearDialog,
   } = useDisclose()
   const { updateSetList, selectedSongs, setSelectedSongs } = useSetLists()
+  const { songs } = useSongs()
 
   const handleUpdateSetlist = () => {
     updateSetList({
       ...setlist,
-      songs: selectedSongs,
+      songs: selectedSongs
+        .map((song) => songs.find(({ id }) => id === song.id))
+        .filter((song) => !!song) as Song[],
       songsCount: selectedSongs.length,
     })
     setIsReadonly(true)

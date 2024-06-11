@@ -20,5 +20,10 @@ export const columns: TableColumn<Song>[] = [
   { label: 'Artista', key: 'artist' },
   { label: 'Início', key: 'start' },
   { label: 'Fim', key: 'end' },
+  {
+    label: 'Possui letra?',
+    render: ({ lyrics }) =>
+      lyrics ? 'Sim' : <span className="text-red-400">Não</span>,
+  },
   { label: 'Ações', render: actions },
 ]

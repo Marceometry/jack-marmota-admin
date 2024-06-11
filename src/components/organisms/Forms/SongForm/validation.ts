@@ -16,6 +16,7 @@ export const songFormSchema = z.object({
   end: z.string().trim(),
   region: z.enum(songRegions, { invalid_type_error: 'Obrigatório' }),
   status: z.enum(songStatuses, { invalid_type_error: 'Obrigatório' }),
+  lyrics: z.string().trim(),
 })
 
 export const songFormResolver = zodResolver(songFormSchema)
